@@ -1,0 +1,76 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsthm}
+
+\usepackage[serbian]{babel}
+
+\newtheorem{thm}{Teorema}[section]
+\theoremstyle{definition}
+\newtheorem{dfn}{Definicija}[section]
+\theoremstyle{remark}
+\newtheorem{no}{Napomena}[section]
+\theoremstyle{plain}
+\newtheorem{lem}[thm]{Lema}
+
+% text width and height
+\textwidth 16cm
+\textheight 23cm
+
+% distance from the top
+\voffset -1.5cm
+
+% distance from the left
+\hoffset 0cm
+\oddsidemargin 0mm
+
+% distance from the bottom
+\footskip 1.5cm
+
+\linespread{1}
+
+\setlength\parindent{0pt}
+
+\title{Primena fazi logike u obradi slika}
+\author{Jelena Mrdak, mi15021\\ Tijana Jevti\' c}
+
+\begin{document}
+\maketitle
+\tableofcontents
+
+\section{FCM}
+\label{sec:FCM}
+Fuzzy C-means (FCM) je jedan od najpopularnijih algoritama za fazi klasterovanje. U ovom poglavlju \' cemo ga najpre detaljno opisati, a zatim \' cemo ga iskoristiti za binarizaciju slike.\\
+
+Cilj ovog algoritma je da skup $X=\{x_{1}, x_{2}, ..., x_{n}\}$ particioni\v se na $k$ delova (klastera) po 
+nekom kriterijumu. Preciznije, kriterijum je minimizacija slede\' ce funkcije:
+\begin{equation}\label{f}
+  \sum_{i=1}^{n}\sum_{j=1}^{k}w_{ij}^{m}\left\|x_{i}-c_{j}\right\|^{2},
+\end{equation}
+gde $w_{ij}\in [0, 1]$ predstavlja pripadnost ta\v cke $x_{i}$ $j$-tom klasteru i $\sum_{j=1}^{k}w_{ij}=1$, dok je $c_{j}$ centroid $j$-tog klastera. Parametar $m$ predstavlja faktor fazifikacije i on se zadaje unapred.
+U nastavku \' cemo preciznije odrediti ove koeficijente. Sada \' cemo samo ukratko opisati korake algoritma.\\
+
+FCM je veoma sli\v can algoritmu k-means i sastoji se iz slede\' cih koraka:
+\begin{itemize}
+  \item Izabrati broj klastera $k$.
+  \item Svakoj ta\v cki $x_{i}$ dodeliti koeficijente $w_{ij} \in [0, 1], j=1,2,..., k$.
+  \item Ponavljati sve dok ne do\dj e do konvergencije:
+    \begin{itemize}
+      \item Izra\v cunati centroide za svaki klaster.
+      \item A\v zurirati koeficijente.
+    \end{itemize}
+  \item Ta\v cku $x_{i}$ dodeliti klasteru kom najvi\v se pripada, tj. $r$-tom klasteru, gde je $w_{ir}=\max\limits_{j} w_{ij}$.
+\end{itemize}
+
+\begin{thm}
+  Funkcija (\ref{f}) dosti\v ze minimum za:
+  \begin{equation}
+    c_{j} = \frac{\sum\limits_{i=1}^{n} w_{ij}^m \cdot x_{i}}{\sum\limits_{i=1}^{n} w_{ij}^{m}}
+  \end{equation}
+  i
+  \begin{equation}
+    w_{ij} = \frac{1}{\sum\limits_{u=1}^{k} \biggl(\frac{\left\|x_{i}-c_{j}\right\|}{\left\|x_{i}-c_{u}\right\|}\biggr)^{\frac{2}{m-1}}} 
+  \end{equation}
+\end{thm}
+\begin{proof}
+\end{proof}
+
+\end{document}
