@@ -44,9 +44,9 @@ Fuzzy C-means (FCM) je jedan od najpopularnijih algoritama za fazi klasterovanje
 Cilj ovog algoritma je da skup $X=\{x_{1}, x_{2}, ..., x_{n}\}$ particioni\v se na $k$ delova (klastera) po 
 nekom kriterijumu. Preciznije, kriterijum je minimizacija slede\' ce funkcije:
 \begin{equation*}
- F(X, \bar{w}, \bar{c}) = \sum_{i=1}^{n}\sum_{j=1}^{k}w_{ij}^{m}\left\|x_{i}-c_{j}\right\|^{2},
+ F(\bar{w}, \bar{c}) = \sum_{i=1}^{n}\sum_{j=1}^{k}w_{ij}^{m}\left\|x_{i}-c_{j}\right\|^{2},
 \end{equation*}
-gde $w_{ij}\in [0, 1]$ predstavlja pripadnost ta\v cke $x_{i}$ $j$-tom klasteru i $\sum_{j=1}^{k}w_{ij}=1$, dok je $c_{j}$ centroid $j$-tog klastera. Parametar $m$ predstavlja faktor fazifikacije i on se zadaje unapred.
+gde $w_{ij}\in [0, 1]$ predstavlja pripadnost ta\v cke $x_{i}$ $j$-tom klasteru i $\sum_{j=1}^{k}w_{ij}=1$, dok je $c_{j}$ centroid $j$-tog klastera. Realni parametar $m>1$ predstavlja faktor fazifikacije i on se zadaje unapred.
 U nastavku \' cemo preciznije odrediti ove koeficijente. Sada \' cemo samo ukratko opisati korake algoritma.\\
 
 FCM je veoma sli\v can algoritmu k-means i sastoji se iz slede\' cih koraka:
@@ -62,7 +62,7 @@ FCM je veoma sli\v can algoritmu k-means i sastoji se iz slede\' cih koraka:
 \end{itemize}
 
 \begin{thm}
-  Funkcija $F(X, \bar{w}, \bar{c})$ dosti\v ze minimum za:
+  Potrebni uslovi za minimizator $(\bar{w}^{*}, \bar{c}^{*})$ funkcije $F(\bar{w}, \bar{c})$ su:
   \begin{equation}\label{c}
     c_{j} = \frac{\sum\limits_{i=1}^{n} w_{ij}^m \cdot x_{i}}{\sum\limits_{i=1}^{n} w_{ij}^{m}}
   \end{equation}
@@ -72,17 +72,20 @@ FCM je veoma sli\v can algoritmu k-means i sastoji se iz slede\' cih koraka:
   \end{equation}
 \end{thm}
 \begin{proof}
-Kako treba odrediti ekstremum funkcije uz ograni\v cenje, koristi\' cemo Lagran\v zove mno\v zioce. Odredi\' cemo ekstremum slede\' ce funkcije:
+Prona\' ci \' cemo potencijalne ta\v cke lokalnih uslovnih ekstremuma. Koristi\' cemo Lagran\v zeve mno\v zioce. Posmatra\' cemo pomo\' cnu funkciju:
 \begin{equation*}
-  J(X, \bar{w}, \bar{c}, \bar{\lambda}) = \sum_{i=1}^{n}\sum_{j=1}^{k}w_{ij}^{m}\left\|x_{i}-c_{j}\right\|^{2} - \sum_{i=1}^{n}\lambda_{i}\biggl(\sum_{j=1}^{k}w_{ij}-1\biggr).
+  J(\bar{w}, \bar{c}, \bar{\lambda}) = \sum_{i=1}^{n}\sum_{j=1}^{k}w_{ij}^{m}\left\|x_{i}-c_{j}\right\|^{2} - \sum_{i=1}^{n}\lambda_{i}\biggl(\sum_{j=1}^{k}w_{ij}-1\biggr).
 \end{equation*}
 
-Potrebno je zadovoljiti slede\' ce uslove:
+Ta\v cke koje tra\v zimo moraju da zadovoljavaju uslov $\nabla J=\textbf{0}$. Dakle,
   \begin{equation}\label{der_c}
   \frac{\partial J}{\partial c_{j}} = 0, 1\leq j \leq k
 \end{equation}
   \begin{equation}\label{der_w}
   \frac{\partial J}{\partial w_{ij}} = 0, 1\leq i \leq n, 1\leq j \leq k 
+\end{equation}
+\begin{equation}\label{der_l}
+  \frac{\partial J}{\partial \lambda_{i}} = 0, 1\leq i \leq n 
 \end{equation}
 
   Re\v savanjem (\ref{der_c}) dobijamo (\ref{c}). Iz (\ref{der_w}) imamo
@@ -94,7 +97,7 @@ odnosno
   w_{ij} = \biggl(\frac{\lambda_{i}}{m\left\|x_{i}-c_{j}\right\|^{2}}\biggr)^{\frac{1}{m-1}}.
 \end{equation}
 
-Koriste\' ci po\v cetni uslov
+Iz (\ref{der_l}) dobijamo:
 \begin{align*}
   1&=\sum_{u=1}^{k}w_{iu}\\
    &=\sum_{u=1}^{k}\biggl(\frac{\lambda_{i}}{m\left\|x_{i}-c_{u}\right\|^{2}}\biggr)^{\frac{1}{m-1}}\\
@@ -102,12 +105,13 @@ Koriste\' ci po\v cetni uslov
    &=\sum_{u=1}^{k}\frac{(m\left\|x_{i}-c_{u}\right\|^{2})^{\frac{1}{1-m}}}{\lambda_{i}^{\frac{1}{1-m}}}\\
    &=\frac{1}{\lambda_{i}^{\frac{1}{1-m}}}\sum_{u=1}^{k}(m\left\|x_{i}-c_{u}\right\|^{2})^{\frac{1}{1-m}},
 \end{align*}
-zaklju\v cujemo da je
+pa zaklju\v cujemo da je
 \begin{equation*}
   \lambda_{i} = \biggl(\sum_{u=1}^{k}(m\left\|x_{i}-c_{u}\right\|^{2})^{\frac{1}{1-m}}\biggr)^{1-m}.
 \end{equation*}
 
-Kona\v cno, zamenjuju\' ci poslednju jednakost u (\ref{wij}), dobijamo (\ref{w}). Ovime smo dokazali da se ekstremum dosti\v ze za date vrednosti. Dokaz da je u pitanju minimum \' cemo ovde presko\v citi.
+Kona\v cno, zamenjuju\' ci poslednju jednakost u (\ref{wij}), dobijamo (\ref{w}). 
 \end{proof}
 
+FCM algoritam za odre\dj ivanje minimizatora funkcije $F$ je iteracija kroz potrebne uslove.
 \end{document}
