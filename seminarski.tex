@@ -1,5 +1,6 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage{amsthm}
+\usepackage{amsmath} 
 
 \usepackage[serbian]{babel}
 
@@ -42,9 +43,9 @@ Fuzzy C-means (FCM) je jedan od najpopularnijih algoritama za fazi klasterovanje
 
 Cilj ovog algoritma je da skup $X=\{x_{1}, x_{2}, ..., x_{n}\}$ particioni\v se na $k$ delova (klastera) po 
 nekom kriterijumu. Preciznije, kriterijum je minimizacija slede\' ce funkcije:
-\begin{equation}\label{f}
-  \sum_{i=1}^{n}\sum_{j=1}^{k}w_{ij}^{m}\left\|x_{i}-c_{j}\right\|^{2},
-\end{equation}
+\begin{equation*}
+ F(X, \bar{w}, \bar{c}) = \sum_{i=1}^{n}\sum_{j=1}^{k}w_{ij}^{m}\left\|x_{i}-c_{j}\right\|^{2},
+\end{equation*}
 gde $w_{ij}\in [0, 1]$ predstavlja pripadnost ta\v cke $x_{i}$ $j$-tom klasteru i $\sum_{j=1}^{k}w_{ij}=1$, dok je $c_{j}$ centroid $j$-tog klastera. Parametar $m$ predstavlja faktor fazifikacije i on se zadaje unapred.
 U nastavku \' cemo preciznije odrediti ove koeficijente. Sada \' cemo samo ukratko opisati korake algoritma.\\
 
@@ -61,16 +62,52 @@ FCM je veoma sli\v can algoritmu k-means i sastoji se iz slede\' cih koraka:
 \end{itemize}
 
 \begin{thm}
-  Funkcija (\ref{f}) dosti\v ze minimum za:
-  \begin{equation}
+  Funkcija $F(X, \bar{w}, \bar{c})$ dosti\v ze minimum za:
+  \begin{equation}\label{c}
     c_{j} = \frac{\sum\limits_{i=1}^{n} w_{ij}^m \cdot x_{i}}{\sum\limits_{i=1}^{n} w_{ij}^{m}}
   \end{equation}
   i
-  \begin{equation}
+  \begin{equation}\label{w}
     w_{ij} = \frac{1}{\sum\limits_{u=1}^{k} \biggl(\frac{\left\|x_{i}-c_{j}\right\|}{\left\|x_{i}-c_{u}\right\|}\biggr)^{\frac{2}{m-1}}} 
   \end{equation}
 \end{thm}
 \begin{proof}
+Kako treba odrediti ekstremum funkcije uz ograni\v cenje, koristi\' cemo Lagran\v zove mno\v zioce. Odredi\' cemo ekstremum slede\' ce funkcije:
+\begin{equation*}
+  J(X, \bar{w}, \bar{c}, \bar{\lambda}) = \sum_{i=1}^{n}\sum_{j=1}^{k}w_{ij}^{m}\left\|x_{i}-c_{j}\right\|^{2} - \sum_{i=1}^{n}\lambda_{i}\biggl(\sum_{j=1}^{k}w_{ij}-1\biggr).
+\end{equation*}
+
+Potrebno je zadovoljiti slede\' ce uslove:
+  \begin{equation}\label{der_c}
+  \frac{\partial J}{\partial c_{j}} = 0, 1\leq j \leq k
+\end{equation}
+  \begin{equation}\label{der_w}
+  \frac{\partial J}{\partial w_{ij}} = 0, 1\leq i \leq n, 1\leq j \leq k 
+\end{equation}
+
+  Re\v savanjem (\ref{der_c}) dobijamo (\ref{c}). Iz (\ref{der_w}) imamo
+\begin{equation*}
+  mw_{ij}^{m-1}\left\|x_{i}-c_{j}\right\|^{2} - \lambda_{i} = 0,
+\end{equation*}
+odnosno
+\begin{equation}\label{wij}
+  w_{ij} = \biggl(\frac{\lambda_{i}}{m\left\|x_{i}-c_{j}\right\|^{2}}\biggr)^{\frac{1}{m-1}}.
+\end{equation}
+
+Koriste\' ci po\v cetni uslov
+\begin{align*}
+  1&=\sum_{u=1}^{k}w_{iu}\\
+   &=\sum_{u=1}^{k}\biggl(\frac{\lambda_{i}}{m\left\|x_{i}-c_{u}\right\|^{2}}\biggr)^{\frac{1}{m-1}}\\
+   &=\sum_{u=1}^{k}\biggl(\frac{m\left\|x_{i}-c_{u}\right\|^{2}}{\lambda_{i}}\biggr)^{\frac{1}{1-m}}\\
+   &=\sum_{u=1}^{k}\frac{(m\left\|x_{i}-c_{u}\right\|^{2})^{\frac{1}{1-m}}}{\lambda_{i}^{\frac{1}{1-m}}}\\
+   &=\frac{1}{\lambda_{i}^{\frac{1}{1-m}}}\sum_{u=1}^{k}(m\left\|x_{i}-c_{u}\right\|^{2})^{\frac{1}{1-m}},
+\end{align*}
+zaklju\v cujemo da je
+\begin{equation*}
+  \lambda_{i} = \biggl(\sum_{u=1}^{k}(m\left\|x_{i}-c_{u}\right\|^{2})^{\frac{1}{1-m}}\biggr)^{1-m}.
+\end{equation*}
+
+Kona\v cno, zamenjuju\' ci poslednju jednakost u (\ref{wij}), dobijamo (\ref{w}). Ovime smo dokazali da se ekstremum dosti\v ze za date vrednosti. Dokaz da je u pitanju minimum \' cemo ovde presko\v citi.
 \end{proof}
 
 \end{document}
