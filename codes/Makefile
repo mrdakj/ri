@@ -6,7 +6,10 @@ WFLAGS = -Wall -Wextra -O3
 binarization: binarization.cpp
 	$(CXX) -o $@ $^ $(CXXFLAGS) $(WFLAGS) $(LDLIBS) 
 
+binarization_2: binarization_2.cpp
+	$(CXX) -o $@ $^ $(CXXFLAGS) $(WFLAGS) $(LDLIBS) 
+
 .PHONY: clean
 
 clean:
-	rm -rf binarization
+	rm -rf binarization binarization_2
