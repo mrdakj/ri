@@ -1,8 +1,12 @@
 \documentclass[12pt,a4paper]{article}
 \usepackage{amsthm}
 \usepackage{amsmath} 
-
 \usepackage[serbian]{babel}
+
+\usepackage{graphicx}
+\usepackage{float}
+
+\usepackage{multicol}
 
 \newtheorem{thm}{Teorema}[section]
 \theoremstyle{definition}
@@ -29,6 +33,8 @@
 \linespread{1}
 
 \setlength\parindent{0pt}
+
+\usepackage{minted}
 
 \title{Primena fazi logike u obradi slika}
 \author{Jelena Mrdak, mi15021\\ Tijana Jevti\' c}
@@ -114,4 +120,45 @@ Kona\v cno, zamenjuju\' ci poslednju jednakost u (\ref{wij}), dobijamo (\ref{w})
 \end{proof}
 
 FCM algoritam za odre\dj ivanje minimizatora funkcije $F$ je iteracija kroz potrebne uslove.
+
+\subsection{Binarizacija slike}
+Ispod je prikazan kod za binarizaciju slike koji koristi FCM algoritam. Napominjemo da se zbog \v citljivosti koda u ovom delu nismo odlu\v cili za efikasnu implementaciju. O tome \' ce biti vi\v se re\v ci u narednoj sekciji.
+
+\inputminted[tabsize=2,breaklines]{cpp}{codes/binarization.cpp}
+
+Rezultat izvr\v savanja algoritma je prikazan ispod.
+\begin{multicols}{2}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{codes/images/storm_trooper.jpg}
+  \caption{input}
+\end{figure}
+\columnbreak
+% second column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{codes/images/storm_trooper_binarized.png}
+  \caption{output}
+\end{figure}
+\end{multicols}
+
+\begin{multicols}{2}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{codes/images/blackboard.jpg}
+  \caption{input}
+\end{figure}
+\columnbreak
+% second column
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{codes/images/blackboard_binarized.png}
+  \caption{output}
+\end{figure}
+\end{multicols}
+
+
+
 \end{document}
