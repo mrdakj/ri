@@ -122,6 +122,7 @@ Kona\v cno, zamenjuju\' ci poslednju jednakost u (\ref{wij}), dobijamo (\ref{w})
 FCM algoritam za odre\dj ivanje minimizatora funkcije $F$ je iteracija kroz potrebne uslove.
 
 \subsection{Binarizacija slike}
+\label{sec:binarizacija}
 Ispod je prikazan kod za binarizaciju slike koji koristi FCM algoritam. Napominjemo da se zbog \v citljivosti koda u ovom delu nismo odlu\v cili za efikasnu implementaciju. O tome \' ce biti vi\v se re\v ci u narednoj sekciji.
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/binarization.cpp}
@@ -131,14 +132,14 @@ Rezultat izvr\v savanja algoritma je prikazan ispod.
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=5cm]{codes/images/storm_trooper.jpg}
-  \caption{input}
+\includegraphics[width=5cm]{images/storm_trooper.jpg}
+  \caption{input}\label{storm_trooper_input}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=5cm]{codes/images/storm_trooper_binarized.png}
+\includegraphics[width=5cm]{images/storm_trooper_binarized_fcm.png}
   \caption{output}
 \end{figure}
 \end{multicols}
@@ -147,18 +148,97 @@ Rezultat izvr\v savanja algoritma je prikazan ispod.
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=7cm]{codes/images/blackboard.jpg}
-  \caption{input}
+\includegraphics[width=7cm]{images/blackboard.jpg}
+  \caption{input}\label{blackboard_input}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=7cm]{codes/images/blackboard_binarized.png}
+\includegraphics[width=7cm]{images/blackboard_binarized_fcm.png}
   \caption{output}
 \end{figure}
 \end{multicols}
 
+\subsection{FCM i k-means}
+U ovom odeljku \' cemo uporediti rezultate algoritama FCM i k-means, kao i vremena njihovih izvr\v savanja.
 
+\begin{no}
+  Koristi\' cemo efikasniju implementaciju FCM algoritma od one date u sekciji \ref{sec:binarizacija}.
+\end{no}
+
+Na slede\' cim slikama su prikazani rezultati.
+
+\begin{multicols}{2}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/storm_trooper_binarized_fcm.png}
+  \caption{FCM output}\label{storm_trooper_fcm}
+ Broj iteracija: 7
+\end{figure}
+\columnbreak
+% second column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/storm_trooper_binarized_kmeans.png}
+  \caption{k-means output}\label{storm_trooper_kmeans}
+ Broj iteracija: 6
+\end{figure}
+\end{multicols}
+
+\newpage
+
+\begin{multicols}{2}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{images/blackboard_binarized_fcm.png}
+  \caption{FCM output}\label{blackboard_fcm}
+ Broj iteracija: 7
+\end{figure}
+\columnbreak
+% second column
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{images/blackboard_binarized_kmeans.png}
+  \caption{k-means output}\label{blackboard_kmeans}
+  Broj iteracija: 7
+\end{figure}
+\end{multicols}
+
+Mo\v zemo primetiti da su slike \ref{storm_trooper_fcm} i \ref{storm_trooper_kmeans} identi\v cne, dok se slike \ref{blackboard_fcm} i \ref{blackboard_kmeans} neznatno razlikuju. Me\dj utim, vremena izvr\v savanja se primetno razlikuju. U Tabeli \ref{vreme_storm} su prikazana vremena (u sekundama) potrebna da algoritmi obrade Sliku \ref{storm_trooper_input} 500, 1000 i 1500 puta. Sli\v cno, u Tabeli \ref{vreme_blackboard} su prikazana vremena potrebna da se obradi Slika \ref{blackboard_input} 50, 100 i 150 puta.
+
+\begin{multicols}{2}
+% first column
+\begin{table}[H]
+\centering
+  \begin{tabular}{c|c|c}
+  broj izvr\v savanja & FCM & k-means\\
+  \hline
+  500 & 4 & 21\\
+  1000 & 8 & 42\\
+  1500 & 12 & 63 
+\end{tabular}
+  \caption{Input Slika \ref{storm_trooper_input}}
+  \label{vreme_storm}
+\end{table}
+
+\columnbreak
+
+\begin{table}[H]
+\centering
+% second column
+\begin{tabular}{c|c|c}
+  broj izvr\v savanja & FCM & k-means\\
+  \hline
+  50 & 8 & 44\\
+  100 & 17 & 89\\
+  150 & 25 & 133 
+\end{tabular}
+  \caption{Input Slika \ref{blackboard_input}}
+  \label{vreme_blackboard}
+\end{table}
+\end{multicols}
 
 \end{document}
