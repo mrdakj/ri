@@ -15,7 +15,7 @@ int main(int argc, const char *argv[])
 
 
 	auto tstart = std::time(0);
-	for (int o = 0; o < 150; o++) {
+	// for (int o = 0; o < 10; o++) {
 		
 	cv::Mat img_binary = cv::Mat(img.rows, img.cols, CV_8UC1, cv::Scalar(255));
 
@@ -60,6 +60,7 @@ int main(int argc, const char *argv[])
 				w1[i][j] = d2/(d2+d1);
 			}
 		}
+		std::cout << eps << std::endl;
 	} while(eps > 1);
 
 	// cluster pixels based on weights 
@@ -69,12 +70,12 @@ int main(int argc, const char *argv[])
 		}
 	}
 
-	}
-	std::cout << std::time(0)-tstart << std::endl;
+	// }
+	// std::cout << std::time(0)-tstart << std::endl;
 	// show and save binary image
-	// namedWindow("Display window", cv::WINDOW_AUTOSIZE);
-	// imshow("Display window", img_binary);
-	// cv::waitKey(0);
+	namedWindow("Display window", cv::WINDOW_AUTOSIZE);
+	imshow("Display window", img_binary);
+	cv::waitKey(0);
 	// imwrite("fcm.png", img_binary);
 
     return 0;

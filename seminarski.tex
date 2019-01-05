@@ -241,4 +241,56 @@ Mo\v zemo primetiti da su slike \ref{storm_trooper_fcm} i \ref{storm_trooper_kme
 \end{table}
 \end{multicols}
 
+Prikaza\' cemo jo\v s dva testa ura\dj ena na dve nove slike.
+
+\begin{multicols}{2}
+% first column
+\begin{table}[H]
+\centering
+  \begin{tabular}{c|c|c}
+  broj izvr\v savanja & FCM & k-means\\
+  \hline
+    % mat
+    100 & 15&  119 \\
+    150&  22&  179 \\
+    200&  31&  238
+\end{tabular}
+  \caption{}
+\end{table}
+
+\columnbreak
+
+\begin{table}[H]
+\centering
+% second column
+\begin{tabular}{c|c|c}
+  broj izvr\v savanja & FCM & k-means\\
+  \hline
+% cat
+  1000 & 3 & 36\\
+  1500 & 5 & 53\\
+  2000 & 6 & 71
+\end{tabular}
+  \caption{}
+\end{table}
+\end{multicols}
+
+Na osnovu podataka iz tabela, zaklju\v cujemo:
+\begin{table}[H]
+\centering
+\begin{tabular}{c|c}
+  test & k-means/FCM\\
+  \hline
+  1 & 5 \\
+  2 & 5 \\
+  3 & 8 \\
+  4 & 12
+\end{tabular}
+  \caption{Koliko puta je FCM br\v zi od k-means}
+\end{table}
+
+Treba napomenuti da su ovi rezultati okvirni, jer u velikoj meri zavise od implementacije samih algoritama. Naime, za centoride u k-means algoritmu je kori\v s\' cen celobrojni tip (int), dok je centroide u FCM algoritmu kori\v s\' cen realni tip (float). U oba slu\v caja su se algoritmi zaustavljali kad je promena u centroidima bila manja od jedan. Dakle, ve\' c tu mo\v ze do\' ci do razlike u broju iteracija. Me\dj utim, i dalje o\v cekujemo da \' ce FCM biti br\v zi od k-means.
+
+Tako\dj e, isti\v cemo da FCM koristi vi\v se memorije nego k-means.
+
 \end{document}
