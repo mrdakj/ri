@@ -1,7 +1,6 @@
 #include <iostream>
 #include <vector>
 #include <opencv2/highgui/highgui.hpp>
-#include <ctime>
 
 int main(int argc, const char *argv[])
 {
@@ -13,10 +12,6 @@ int main(int argc, const char *argv[])
 	// read image
 	cv::Mat img = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
 
-
-	auto tstart = std::time(0);
-	// for (int o = 0; o < 10; o++) {
-		
 	cv::Mat img_binary = cv::Mat(img.rows, img.cols, CV_8UC1, cv::Scalar(255));
 
 	// weights
@@ -60,7 +55,6 @@ int main(int argc, const char *argv[])
 				w1[i][j] = d2/(d2+d1);
 			}
 		}
-		std::cout << eps << std::endl;
 	} while(eps > 1);
 
 	// cluster pixels based on weights 
@@ -69,14 +63,12 @@ int main(int argc, const char *argv[])
 			img_binary.at<unsigned char>(i,j) = (w1[i][j] > 0.5) ? 255 : 0;
 		}
 	}
-
-	// }
-	// std::cout << std::time(0)-tstart << std::endl;
+	
 	// show and save binary image
 	namedWindow("Display window", cv::WINDOW_AUTOSIZE);
 	imshow("Display window", img_binary);
 	cv::waitKey(0);
-	// imwrite("fcm.png", img_binary);
+	imwrite("fcm.png", img_binary);
 
     return 0;
 }

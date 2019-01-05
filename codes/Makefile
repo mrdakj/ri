@@ -3,6 +3,9 @@ CXXFLAGS = -std=c++17
 LDLIBS  = -lstdc++fs `pkg-config opencv --cflags --libs`
 WFLAGS = -Wall -Wextra -O3
 
+edge_detection: edge_detection.cpp
+	$(CXX) -o $@ $^ $(CXXFLAGS) $(WFLAGS) $(LDLIBS) 
+
 binarization: binarization.cpp
 	$(CXX) -o $@ $^ $(CXXFLAGS) $(WFLAGS) $(LDLIBS) 
 
