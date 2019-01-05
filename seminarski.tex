@@ -125,7 +125,7 @@ FCM algoritam za odre\dj ivanje minimizatora funkcije $F$ je iteracija kroz potr
 \label{sec:binarizacija}
 Ispod je prikazan kod za binarizaciju slike koji koristi FCM algoritam. Napominjemo da se zbog \v citljivosti koda u ovom delu nismo odlu\v cili za efikasnu implementaciju. O tome \' ce biti vi\v se re\v ci u narednoj sekciji.
 
-\inputminted[tabsize=2,breaklines]{cpp}{codes/binarization.cpp}
+\inputminted[tabsize=2,breaklines]{cpp}{codes/latex/binarization.cpp}
 
 Rezultat izvr\v savanja algoritma je prikazan ispod.
 \begin{multicols}{2}
@@ -295,5 +295,45 @@ Tako\dj e, isti\v cemo da FCM koristi vi\v se memorije nego k-means.
 
 \section{Fuzzy Edge Detection}
 
+\inputminted[tabsize=2,breaklines]{cpp}{codes/latex/edge_detection.cpp}
+
+\begin{multicols}{2}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{images/blackboard.jpg}
+  \caption{input}
+\end{figure}
+\columnbreak
+% second column
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{images/blackboard_35.png}
+  \caption{output}
+\end{figure}
+\end{multicols}
+
+\begin{multicols}{3}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/blackboard_25.png}
+  \caption{threshold = 0.25}
+\end{figure}
+\columnbreak
+% second column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/blackboard_35.png}
+  \caption{threshold = 0.35}
+\end{figure}
+\columnbreak
+% third column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/blackboard_5.png}
+  \caption{threshold = 0.5}
+\end{figure}
+\end{multicols}
 
 \end{document}

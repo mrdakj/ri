@@ -1,6 +1,7 @@
 #include <opencv2/highgui/highgui.hpp>
 #include <iostream>
 #include <numeric>
+#include <ctime>
 
 cv::Mat gaussian_blur(const cv::Mat& image)
 {
@@ -49,20 +50,20 @@ cv::Mat gaussian_blur(const cv::Mat& image)
 
 int main(int argc, const char *argv[])
 {
-	if (argc != 2) {
-		std::cerr << "Usage: ./binarization path_to_img" << std::endl;
+	if (argc != 3) {
+		std::cerr << "Usage: ./binarization path_to_img threshold" << std::endl;
 		return 1;
 	}
 
 	// read image
 	cv::Mat img = cv::imread(argv[1], cv::IMREAD_GRAYSCALE);
 
-	float threshold = 0.35;
+	float threshold = std::atof(argv[2]);
 	const int L = 256;
-	std::vector<std::vector<unsigned>> mi(img.rows, std::vector<unsigned>(img.cols, 0));
+	std::vector<std::vector<float>> mi(img.rows, std::vector<float>(img.cols, 0));
 	auto output = gaussian_blur(img);
 
-	unsigned maxm = 0;
+	float maxm = 0;
 	for (int i = 1; i < output.rows-1; i++) {
 		for (int j = 1; j < output.cols-1; j++) {
 			unsigned s =0;
@@ -71,16 +72,14 @@ int main(int argc, const char *argv[])
 					s+=std::abs(output.at<unsigned char>(i,j)-output.at<unsigned char>(i+x,j+y));
 				}
 			}
-			mi[i][j] = 1000*s/(s+(L-1));
+			mi[i][j] = (1.0*s)/(s+(L-1));
 			maxm = std::max(maxm, mi[i][j]);
 		}
 	}
 
-	unsigned limit = maxm*threshold;
-
 	for (int i = 1; i < output.rows-1; ++i) {
 		for (int j = 1; j < output.cols-1; j++) {
-			output.at<unsigned char>(i,j) = (mi[i][j] < limit) ? 0 : 255;
+			output.at<unsigned char>(i,j) = (mi[i][j]/maxm <  threshold) ? 0 : 255;
 		}
 	}
 

@@ -75,6 +75,6 @@
 	\PYG{n}{cv}\PYG{o}{::}\PYG{n}{waitKey}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
 	\PYG{n}{imwrite}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}fcm.png\PYGZdq{}}\PYG{p}{,} \PYG{n}{img\PYGZus{}binary}\PYG{p}{);}
 
-    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+	\PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
 \PYG{p}{\PYGZcb{}}
 \end{Verbatim}

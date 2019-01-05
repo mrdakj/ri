@@ -9,10 +9,7 @@ edge_detection: edge_detection.cpp
 binarization: binarization.cpp
 	$(CXX) -o $@ $^ $(CXXFLAGS) $(WFLAGS) $(LDLIBS) 
 
-binarization_2: binarization_2.cpp
-	$(CXX) -o $@ $^ $(CXXFLAGS) $(WFLAGS) $(LDLIBS) 
-
 .PHONY: clean
 
 clean:
-	rm -rf binarization binarization_2
+	rm -rf binarization edge_detection
