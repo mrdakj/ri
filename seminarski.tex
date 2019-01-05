@@ -41,7 +41,22 @@
 
 \begin{document}
 \maketitle
+
+\begin{abstract}
+  U ovom radu je predstavljena primena fazi logike u obradi slika. Opisana su dve algoritma, Fuzzy C-means (FCM) za binarizaciju slike i Fuzzy Edge Detection (FED) za detekciju ivica. Tako\dj e, ovi algoritmi su pore\dj eni sa algoritmima koji ne koriste fazi logiku. Konkretno, poredili smo FCM sa k-means-om i FED sa Canny Edge Detection (CED) algoritmom. Slike dobijene FCM-om i k-means-om se skoro i ne razlikuju, dok to nije slu\v caj sa FED-om i CED-om, \v ciji su izlazi primetno druga\v ciji. U oba slu\v caja su algoritmi koji koriste fazi logiku bila br\v za.
+\end{abstract}
+
 \tableofcontents
+
+\section{Uvod}
+U matematici smo do sad navikli da je ne\v sto ta\v cno ili neta\v cno, da ne\v sto pripada ili ne pripada skupu. Me\dj utim, nekad je te\v sko povu\' ci granicu i odrediti kad je ne\v sto 0, a kad 1. \v Sto smo bli\v zi granici, to nesigurnost ve\' ca. Na primer, ako \v zelimo da klasifikujemo ljude na niske i visoke i postavimo granicu na $170 cm$, dobijamo da je osoba visoka $170 cm$ visoka, dok je osoba visoka $169 cm$ niska, \v sto i nema mnogo smisla.\\
+
+Fazi logiku je 1965. godine uveo Lotfi Zadeh i ona nam u velikoj meri mo\v ze pomo\' ci za re\v savanje pomenutih problema. Fazi skupovi se razlikuju od klasi\v cnih skupova kod kojih je granica jasna (element ili prripada ili ne pripada skupu). Zadeh je uop\v stio klasi\v cne skupove tako \v sto je pro\v sirio skup valuacije $\{0, 1\}$ na interval realnih brojeva $[0, 1]$. Stepen pripadnosti nekog elementa fazi skupu opisuje koliko taj element odgovara pojmu koji je reprezentovan fazi skupom. Konkretno, element $x$ pripada skupu $A$ sa stepenom $\mu_{A}(x)$, gde je $\mu_{A} : A \rightarrow [0, 1]$ karakteristi\v cna funkcija skupa $A$.\\
+
+U ovom radu smo koristili upravo ove ideje kako bismo odredili da li je piksel crn ili beo, ili da li je piksel ivica ili nije.\\
+
+Kodovi su pisani u jeziku \textit{C++} pomo\' cu biblioteke \textit{OpenCV}. Napominjemo da su svi kodovi, kako oni navedeni u radu, tako i oni koji nisu, ali koji su kori\v s\' ceni za pore\dj enje, pisani ru\v cno od strane autora, te da svi rezultati i zaklju\v cci zavise od njihove implementacije. Tako\dj e prikazana vremena izvr\v savanja u velikoj meri zavise od ma\v sine na kojoj se kodovi izvr\v savaju, te mogu varirati, ali su sva vremena dobijena testiranjem na istom ra\v cunaru u sli\v cniim uslovima.
+
 
 \section{FCM}
 \label{sec:FCM}
@@ -57,6 +72,7 @@ U nastavku \' cemo preciznije odrediti ove koeficijente. Sada \' cemo samo ukrat
 
 FCM je veoma sli\v can algoritmu k-means i sastoji se iz slede\' cih koraka:
 \begin{itemize}
+  \item Ako je slika u boji, konvertovati je u sivu. 
   \item Izabrati broj klastera $k$.
   \item Svakoj ta\v cki $x_{i}$ dodeliti koeficijente $w_{ij} \in [0, 1], j=1,2,..., k$.
   \item Ponavljati sve dok ne do\dj e do konvergencije:
@@ -293,25 +309,61 @@ Treba napomenuti da su ovi rezultati okvirni, jer u velikoj meri zavise od imple
 
 Tako\dj e, isti\v cemo da FCM koristi vi\v se memorije nego k-means.
 
-\section{Fuzzy Edge Detection}
+\section{Detekcija ivica}
+
+Detekcija ivica ima veliki zna\v caj u obradi slika. Koristi se u raznim algoritmima kao \v sto su segmentacija slike, detekcija i izdvajanje karakteristika, pa \v cak nekad i u kompresiji slika.\\
+
+Ivice mo\v zemo definisati kao mesta na slici gde se intenzitet naglo menja, tj. gde je razlika vrednosti susednih piksela velika. Postoje mnogi algoritmi koji se bave ovim problemom, me\dj utim, nijedan nije savr\v sen. Primerom \' cemo najbolje ilustrovati \v sta mislimo kad to ka\v zemo. Naime, Sobelov algoritam je dobar kada treba detektovati oblike, ali ne radi dobro u realnom vremenu gde je brzina klju\v cna (direktan prenos nekog doga\dj aja). Za takve situacije je prikladniji Canny algoritam.\\
+
+U nastavku \' cemo videti jo\v s jedan pristup ovom problemu. Koristi\' cemo fazi logiku i fazi skupove.
+
+\subsection{FED}
+
+Kao \v sto smo ve\' c napomenuli, koristi\' cemo fazi logiku i fazi skupove da bismo detektovali ivice na slici. Preciznije, napravi\' cemo fazi skup koji sadr\v zi ure\dj ene parove (piksel, vrednost karakteristi\v cne funkcije). Taj skup \' ce predstavljati ivice, dok \' ce nam vrednosti karakteristi\v cne funkcije govoriti u kojoj meri piksel pripada tom skupu.
+
+Postavlja se pitanje \v sta izabrati za karakteristi\v cnu funkciju. Podsetimo se, ivica je mesto gde se intenzitet naglo menja. Shodno tome, treba uzeti u obzir razliku intenziteta piksela koji trenutno posmatramo i njegovih suseda. Kada je ta razlika velika, vrednost na\v se funkcije treba da te\v zi jedinici, a kada je razlika mala, treba da te\v zi nuli. Jedna takva funkcija je:
+
+\begin{equation}
+  \mu_{edge}(p) = 1 - \frac{1}{1+\frac{\sum_{n\in N(p)}\left\|p-n\right\|}{L-1}},
+\end{equation}
+
+gde je $p$ piksel, $N(p)$ skup piksela iz njegove okoline, $L$ broj sivih nijansi (naj\v ce\v s\' ce 256) i $\left\| \cdot \right\|$ norma koju \' cemo definisati kao apsolutnu vrednost razlike intenziteta piksela.\\
+
+Pre nego \v sto damo kod, ukratko \' cemo opisati korake algoritma:
+\begin{itemize}
+  \item \textbf{Pretprocesiranje} - ako je slika u boji, konvertovati je u sivu sliku.
+  \item \textbf{Pretprocesiranje} - primeniti Gausov filter na sliku kako bismo je malo zamutili.
+  \item \textbf{Fazifikacija} - ra\v cunanje karakteristi\v cne funkcije $\mu_{edge}$ za svaki piksel sa slike. Takodje, \v cuvanje najve\' ce vrednosti funkcije (promenljiva MAX).
+  \item \textbf{Normiranje vrednosti} - vrednosti karakteristi\v cne funkcije podeliti sa MAX:
+    \begin{equation*}
+      \mu_{edge}(p) = \frac{\mu_{edge}(p)}{MAX}
+    \end{equation*}
+  \item \textbf{Defazifikacija} - na osnovu vrednosti $\mu_{edge}(p)$ i nekog unapred datog praga (threshold), pikselu $p$ dodeliti crnu ili belu boju.
+\end{itemize}
+
+Po\v sto smo videli kratak opis algoritma, u nastavku dajemo kod radi boljeg razumevanja istog.
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/edge_detection.cpp}
+
+Na Slici \ref{fed_result} je prikazan rezultat rada algoritma.
 
 \begin{multicols}{2}
 % first column
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard.jpg}
-  \caption{input}
+  \caption{input}\label{blackboard_fed_input}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard_35.png}
-  \caption{output}
+  \caption{output}\label{fed_result}
 \end{figure}
 \end{multicols}
+
+Na slede\' cim slikama mo\v zemo videti kako se rezultat menja u zavisnosti od praga koji se zadaje.
 
 \begin{multicols}{3}
 % first column
@@ -336,4 +388,55 @@ Tako\dj e, isti\v cemo da FCM koristi vi\v se memorije nego k-means.
 \end{figure}
 \end{multicols}
 
+\subsection{FED i CED}
+
+Na Slikama \ref{fed_output} i \ref{canny_output} mo\v zemo videti izlaze ovih algoritama.
+
+\begin{multicols}{2}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{images/blackboard_35.png}
+  \caption{FED output}\label{fed_output}
+\end{figure}
+
+\columnbreak
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{images/blackboard_canny.png}
+  \caption{Canny output}\label{canny_output}
+\end{figure}
+\end{multicols}
+
+Iako naizgled izgleda da FED daje bolje rezultate, ivice kod Canny algoritma su tanje (\v sto je po\v zeljno) i to mo\v zemo videti tako \v sto \' cemo prikazati uve\' cane delove Slika \ref{fed_output} i \ref{canny_output}.
+
+\begin{multicols}{2}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{images/fuzzy.png}
+  \caption{FED output}
+\end{figure}
+
+\columnbreak
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=7cm]{images/canny.png}
+  \caption{Canny output}
+\end{figure}
+\end{multicols}
+
+U pore\dj enju sa CED, FED je dosta br\v zi. Naime, za obradu Slike \ref{blackboard_fed_input} sto puta, FED algoritmu je bilo potrebno 60 sekundi, dok CED algoritmu 110. Naravno, ograni\v cavamo se na ru\v cnu implementaciju CED-a autora koja je najverovatnije sporija od implementacije istog algoritma u bibliotekama.\\
+
+Jo\v s jedna prednost FED u odnosu na CED je to \v sto se mnogo lak\v se implementira.
+
+\section{Zaklju\v cak}
+Teorija fazi skupova i fazi logika imaju zna\v cajnu primenu u procesiranju slika. Neke od tih primena smo videli i u ovom radu - binarizacija slike i detektovanje ivica. Postoje jo\v s mnogi algoritmi kao \v sto su algoritmi za isticanje kontrasta, $\lambda$ osvetljenja, $\lambda$ negativa itd.  Glavna prednost ovakvog pristupa procesiranju slika jeste jednostavnost njihove implementacije. Pored prednosti ovi pristupi imaju i mane. Nekad to mo\v ze biti brzina izvr\v savanja, ili pak memorija. Tako\dj e, i sami rezultati se mogu dosta razlikovati od rezultata algoritama koji nisu bazirani na fazi logici, kao \v sto je to bio slu\v caj u detekciji ivica.
+
+\begin{thebibliography}{9}
+  \bibitem{} Neboj\v sa Peri\' c, "Neke primene teorije fazi skupova i fazi logike u procesiranju slika", Matemati\v cki fakultet u Beogradu, 2014.
+  \bibitem{} Mario I. Chacon M, "Fuzzy binarization and segmentation of text images for opcr", Mexico New Mexico State University
+\end{thebibliography}
 \end{document}
