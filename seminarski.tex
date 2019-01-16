@@ -482,12 +482,12 @@ naredna 3 if-then pravila: \\ \\
 2. Ako je piksel siv, onda \'ce biti siv. \\
 3. Ako je piksel crn, onda \'ce biti crnji.\\ \\
 INT operator primenjen na funkciji pripadnosti $\mu$:
-\[
-    \bar\mu_{ij}(\mu_{ij}) = \left\{\begin{array}{lr}
-        2 * \mu_{ij}^2, & 0\leq \mu_{ij}\leq \mu_{c}\\
-        1 - (2 * (1 - \mu_{ij})^2), & \mu_{c}\leq \mu_{ij}\leq 1
-        \end{array}
-  \]
+% \[
+%     \bar\mu_{ij}(\mu_{ij}) = \left\{\begin{array}{lr}
+%         2 * \mu_{ij}^2, & 0\leq \mu_{ij}\leq \mu_{c}\\
+%         1 - (2 * (1 - \mu_{ij})^2), & \mu_{c}\leq \mu_{ij}\leq 1
+%         \end{array}
+%   \]
 
 Ta\v cka $\mu_{c}$ je grani\v cna vrednost koja se mo\v ze menjati. Naj\v ce\v s\' ce uzimana vrednost za nju je $0.5$ 
 (takodje kori\v s\' cenja i u na\v soj implementaciji). \\
@@ -500,6 +500,8 @@ Izlazna slika $Y$ se dobija primenom inverzne funkcije $\mu^{-1}$:\\
 \end{align*}
 
 Na Slici \ref{tree_fuzzy_grayscale_output}, Slici \ref{fuzzy_grayscale_output1} i Slici \ref{fuzzy_grayscale_output2} su prikazani rezultati rada algoritma.
+
+\newpage
 
 \begin{multicols}{2}
 % first column
@@ -548,16 +550,6 @@ Na Slici \ref{tree_fuzzy_grayscale_output}, Slici \ref{fuzzy_grayscale_output1} 
   \caption{output}\label{fuzzy_grayscale_output2}
 \end{figure}
 \end{multicols}
-
-
-
-
-
-
-
-
-
-
 
 
 \section{Zaklju\v cak}
