@@ -327,7 +327,7 @@ Postavlja se pitanje \v sta izabrati za karakteristi\v cnu funkciju. Podsetimo s
   \mu_{edge}(p) = 1 - \frac{1}{1+\frac{\sum_{n\in N(p)}\left\|p-n\right\|}{L-1}},
 \end{equation}
 
-gde je $p$ piksel, $N(p)$ skup piksela iz njegove okoline, $L$ broj sivih nijansi (naj\v ce\v s\' ce 256) i $\left\| \cdot \right\|$ norma koju \' cemo definisati kao apsolutnu vrednost razlike intenziteta piksela.\\
+gde je $p$ piksel, $N(p)$ skup piksela iz njegove okoline, $L$ broj sivih nijansi (za 8-bitnu sliku, to je 256) i $\left\| \cdot \right\|$ norma koju \' cemo definisati kao apsolutnu vrednost razlike intenziteta piksela.\\
 
 Pre nego \v sto damo kod, ukratko \' cemo opisati korake algoritma:
 \begin{itemize}
@@ -341,7 +341,7 @@ Pre nego \v sto damo kod, ukratko \' cemo opisati korake algoritma:
   \item \textbf{Defazifikacija} - na osnovu vrednosti $\mu_{edge}(p)$ i nekog unapred datog praga (threshold), pikselu $p$ dodeliti crnu ili belu boju.
 \end{itemize}
 
-Po\v sto smo videli kratak opis algoritma, u nastavku dajemo kod radi boljeg razumevanja istog.
+Po\v sto smo videli kratak opis algoritma, u nastavku dajemFCMo kod radi boljeg razumevanja istog.
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/edge_detection.cpp}
 
@@ -432,11 +432,98 @@ U pore\dj enju sa CED, FED je dosta br\v zi. Naime, za obradu Slike \ref{blackbo
 
 Jo\v s jedna prednost FED u odnosu na CED je to \v sto se mnogo lak\v se implementira.
 
+
+\section{Ulep\v savanje slika kori\v s\v cenjem fazi logike}
+
+Ulep\v savanje slika (eng. image enhancement) predstavlja jedan od osnovnih zadataka obrade slika. \\
+Cilj je obraditi ulaznu sliku tako da izlazna bude pogodnija od ulazne za neku specifi\v cnu upotrebu. 
+
+Slike sa lo\v sim kontrastom, lo\v se osvetljene i zamu\' cene slike se dobijaju usled nesavr\v senosti uredjaja koji ih prave (senzori, fotoaparati, itd.), neodgovaraju\' cih uslova za vreme pravljenja slike (lo\v se svetlo) i tokom prenosa slika.
+\\ \\
+Sa druge strane, slike sa dobrim kontrastom, dobro osvetljene slike, one koje daju dovoljno informacija posmatra\v cu, potrebne su za veliki broj drugih oblasti (medicina, analiza prostora, autonomna navigacija, obrada slika dobijenih satelitima) ili za dalju obradu slika.
+\\ \\
+Metodi za ulep\v savanje slika se mogu podeliti u 3 grupe [4]:
+\\
+\\1. Prostorni metod (eng. spatial domain method)
+\\2. Metod domena frekvencija (eng. frequency domain method)
+\\3. Fazi metod (eng. fuzzy method)
+\\ \\ 
+Prostorni metodi primenjuju odredjenu transformaciju nad svakim pikselom slike. Daju dosta dobre rezultate, ali se mo\v ze desiti da rezultuju\' ca slika ne izgleda uvek adekvatno (npr. da izgleda isprano).
+Neke od prostornih metoda zasnivaju svoj rad na histogramu slike (pomeranje histograma (eng. histogram sliding), razvla\v cenje histograma (eng. histogram stretching), pode\v savanje histograma (eng. histogram equalization)).
+Rezultati metoda pode\v savanja histograma \' ce biti poredjeni sa rezultatima koje daje predstavljena fazi metoda.
+\\ \\ 
+Metod domena frekvencija se pokazuje kao dosta skup [3], \v cak i uz kori\v s\' cenje brzih transformacija (npr. brza Furijeova transformacija), tako da nije pogodan za obradu slika u realnom vremenu.
+\\ \\ 
+Fazi metod je sposoban da imitira pona\v sanje eksperta uz kori\v s\' cenje baze znanja.\\
+Postoji veliki broj metoda koji kombinuje metodu pode\v savanja histograma sa metodom zasnovanom na fazi logici.
+Mnoge fazi metode prate standardan sled koraka (fazifikacija, promena vrednosti funkcije pripadnosti, defazifikacija), dok neke ne prolaze kroz sve ove korake.
+\\
+\\
+U nastavku su predstavljene 2 metode za ulep\v savanje slika zasnovane na fazi logici: jedna za slike u boji, druga za crno-bele slike.
+
+\newpage
+\subsection{Tehnika za ulep\v savanje crno-belih slika sa lo\v sim kontrastom [3]}
+
+Vrednosti ulazne slike $X$, dimenzija M x N, fazifikuju se primenom funkcije $\mu$:\\
+\begin{align*}
+  \mu_{ij}(x_{ij}) =  \frac{x_{ij} - x_{min}}{x_{max} - x_{min}}\\ \\
+  0\leq i \leq m, 0\leq j \leq n
+\end{align*}
+$x_{max}$, $x_{min}$ predstavljaju maksimalnu i minimalnu vrednost piksela koja se mo\v ze na\' ci na slici $X$, respektivno.\\
+$x_{ij}$ predstavlja vrednost piksela na mestu $ij$. Za 8-bitnu sliku, ta vrednost mo\v ze biti u intervalu $[0, 2^8 - 1]$. \\ 
+$\mu_{ij}$ predstavlja stepen osvetljenosti koju ima piksel $ij$ na ulaznoj slici $X$. U fazi terminologiji, $\mu$ je funkcija pripadnosti i omogu\' cava 
+prevodjenje nefazi ulaza (slika $X$) u njen odgovaraju\' ci fazi oblik.
+Stoga, $0\leq \mu_{ij} \leq 1$.\\
+
+Kako bi se dobio \v sto bolji rezultat, za modifikaciju funkcije pripadnosti se uzima poznati INT operator, predlo\v zen od strane Kinga i Pala.\\
+Formula kojom je predstavljen INT operator, u stvari, predstavlja matemati\v cku formulaciju
+naredna 3 if-then pravila: \\ \\
+1. Ako je piksel beo, onda \'ce biti belji.\\
+2. Ako je piksel siv, onda \'ce biti siv. \\
+3. Ako je piksel crn, onda \'ce biti crnji.\\ \\
+INT operator primenjen na funkciji pripadnosti $\mu$:
+\[
+    \bar\mu_{ij}(\mu_{ij}) = \left\{\begin{array}{lr}
+        2 * \mu_{ij}^2, & 0\leq \mu_{ij}\leq \mu_{c}\\
+        1 - (2 * (1 - \mu_{ij})^2), & \mu_{c}\leq \mu_{ij}\leq 1
+        \end{array}
+  \]
+
+Ta\v cka $\mu_{c}$ je grani\v cna vrednost koja se mo\v ze menjati. Naj\v ce\v s\' ce uzimana vrednost za nju je $0.5$ 
+(takodje kori\v s\' cenja i u na\v soj implementaciji). \\
+
+Nakon modifikacije funkcije pripadnosti, dobijene vrednosti treba defazifikovati i na taj na\v cin dobiti nove nijanse sive, izlaznu sliku.\\
+Izlazna slika $Y$ se dobija primenom inverzne funkcije $\mu^{-1}$:\\
+\begin{align*}
+  y_{ij} = \mu^{-1}(\bar\mu_{ij})\\
+  y_{ij} = x_{min} + \bar\mu * (x_{max} - x_{min})
+\end{align*}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 \section{Zaklju\v cak}
 Teorija fazi skupova i fazi logika imaju zna\v cajnu primenu u procesiranju slika. Neke od tih primena smo videli i u ovom radu - binarizacija slike i detektovanje ivica. Postoje jo\v s mnogi algoritmi kao \v sto su algoritmi za isticanje kontrasta, $\lambda$ osvetljenja, $\lambda$ negativa itd.  Glavna prednost ovakvog pristupa procesiranju slika jeste jednostavnost njihove implementacije. Pored prednosti ovi pristupi imaju i mane. Nekad to mo\v ze biti brzina izvr\v savanja, ili pak memorija. Tako\dj e, i sami rezultati se mogu dosta razlikovati od rezultata algoritama koji nisu bazirani na fazi logici, kao \v sto je to bio slu\v caj u detekciji ivica.
 
 \begin{thebibliography}{9}
   \bibitem{} Neboj\v sa Peri\' c, "Neke primene teorije fazi skupova i fazi logike u procesiranju slika", Matemati\v cki fakultet u Beogradu, 2014.
   \bibitem{} Mario I. Chacon M, "Fuzzy binarization and segmentation of text images for opcr", Mexico New Mexico State University
+  \bibitem{} Ajay Kumar Gupta, Siddharth Singh Chouhan, Manish Shrivastava, "Fuzzy based Low Contrast Image Enhancement Technique by using Pal and King Method", International Journal of Computer Applications, May 2016.
+  \bibitem{} Pooja Mishra, Khom Lal Sinha, "A Highly Efficient Color Image Contrast Enhancement using Fuzzy Based Contrast", Advanced Research in Electrical and Electronic Engineering, 2014
+Intensification Operator
+
 \end{thebibliography}
 \end{document}
