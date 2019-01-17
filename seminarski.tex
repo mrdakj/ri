@@ -56,11 +56,8 @@ Kodovi su pisani u jeziku \textit{C++} pomo\' cu biblioteke \textit{OpenCV}.  Na
 \section{Uvod}
 U matematici smo do sad navikli da je ne\v sto ta\v cno ili neta\v cno, da ne\v sto pripada ili ne pripada skupu. Me\dj utim, nekad je te\v sko povu\' ci granicu i odrediti kad je ne\v sto 0, a kad 1. \v Sto smo bli\v zi granici, to je nesigurnost ve\' ca. Na primer, ako \v zelimo da klasifikujemo ljude na niske i visoke i postavimo granicu na $170 cm$, dobijamo da je osoba visoka $170 cm$ visoka, dok je osoba visoka $169 cm$ niska, \v sto i nema mnogo smisla.\\
 
-Fazi logiku je 1965. godine uveo Lotfi Zadeh i ona nam u velikoj meri mo\v ze pomo\' ci za re\v savanje pomenutih problema. \\
-Pirs( Peirce) je bio jedan od prvih mislilaca koji se ozbiljnije pozabavio pitanjem neodre\dj enosti (eng. vagueness), jo\v s mnogo pre Zadeha, po\v cetkom 20. veka. 
-Pirs nije verovao u jasnu granicu izme\dj u ta\v cnog i neta\v cnog, ve\' c u to da je \v zivot kontinuum.
-Drugi poznati nau\v cnici i filozofi su se dalje bavili ovom idejom. Rasel je govorio -Sav jezik je neodre\dj en. Neodre\dj enost je pitanje stepena (eng. Vagueness is a matter of degree). [6]
-\\ \\
+Fazi logiku je 1965. godine uveo Lotfi Zadeh\footnote{Lotfi A. Zadeh (1921 – 2017) matemati\v car, kompjuterski nau\v cnik, in\v zenjer elektrotehnike.} i ona nam u velikoj meri mo\v ze pomo\' ci za re\v savanje pomenutih problema. Jo\v s pre Zadeha je Pirs\footnote{Charles Sanders Peirce (1839 – 1914) ameri\v cki filozof, logi\v car i matemati\v car.} ozbiljnije prou\v cavao neodre\dj enost (eng. vagueness). On nije verovao u jasnu granicu izme\dj u ta\v cnog i neta\v cnog, ve\' c u to da je \v zivot kontinuum. Tako\dj e, i drugi poznati nau\v cnici i filozofi su se dalje bavili ovom idejom. Rasel\footnote{Bertrand Russell (1872 — 1970) britanski filozof i matemati\v car.} je govorio da je sav jezik neodre\dj en. Neodre\dj enost je pitanje stepena (eng. Vagueness is a matter of degree). [6]\\
+
 Fazi skupovi se razlikuju od klasi\v cnih skupova kod kojih je granica jasna (element ili pripada ili ne pripada skupu). Zadeh je uop\v stio klasi\v cne skupove tako \v sto je pro\v sirio skup valuacije $\{0, 1\}$ na interval realnih brojeva $[0, 1]$. Stepen pripadnosti nekog elementa fazi skupu opisuje koliko taj element odgovara pojmu koji je reprezentovan fazi skupom. Konkretno, element $x$ pripada skupu $A$ sa stepenom $\mu_{A}(x)$, gde je $\mu_{A} : A \rightarrow [0, 1]$ karakteristi\v cna funkcija skupa $A$.\\
 
 U ovom radu smo koristili upravo ove ideje kako bismo odredili da li je piksel crn ili beo, da li je piksel ivica ili nije, da li je dovoljno osvetljen ili ne.\\
@@ -75,10 +72,10 @@ Fazi tehnike za obradu slika, uostalom kao i sve ostale fazi tehnike, sastoje se
 i defazifikacija. Prva i poslednja faza su neophodne zbog toga \v sto ne postoji odgovaraju\' ci fazi hardver. [7]
 \\ \\ 
 Slika $X$, dimenzija M x N, mo\v ze biti predstavljena kao fazi skup [8]
-\begin{equation}
-  X = \sum_{i=1}^{M}\sum_{j=1}^{N} x_{ij}, \mu_{ij}
-\end{equation}
-$\mu_{ij} \in [0, 1]$ i predstavlja vrednost funkcije pripadnosti.
+\begin{equation*}
+  X = \sum_{i=1}^{M}\sum_{j=1}^{N} x_{ij}, \mu_{ij},
+\end{equation*}
+gde $\mu_{ij} \in [0, 1]$ predstavlja vrednost funkcije pripadnosti.
 
 
 \section{FCM}
@@ -225,8 +222,6 @@ Na slede\' cim slikama su prikazani rezultati.
  Broj iteracija: 6
 \end{figure}
 \end{multicols}
-
-\newpage
 
 \begin{multicols}{2}
 % first column
@@ -438,7 +433,7 @@ Iako naizgled izgleda da FED daje bolje rezultate, ivice kod Canny algoritma su 
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=7cm]{images/fuzzy.png}
+\includegraphics[width=6cm]{images/fuzzy.png}
   \caption{FED rezultat}
 \end{figure}
 
@@ -446,7 +441,7 @@ Iako naizgled izgleda da FED daje bolje rezultate, ivice kod Canny algoritma su 
 
 \begin{figure}[H]
 \centering
-\includegraphics[width=7cm]{images/canny.png}
+\includegraphics[width=6cm]{images/canny.png}
   \caption{Canny rezultat}
 \end{figure}
 \end{multicols}
@@ -479,24 +474,18 @@ Metod domena frekvencija se pokazuje kao dosta skup [3], \v cak i uz kori\v s\' 
 \\ \\ 
 Fazi metod je sposoban da imitira pona\v sanje eksperta uz kori\v s\' cenje baze znanja.\\
 Postoji veliki broj metoda koji kombinuje metodu pode\v savanja histograma sa metodom zasnovanom na fazi logici.
-Mnoge fazi metode prate standardan sled koraka (fazifikacija, promena vrednosti funkcije pripadnosti, defazifikacija), dok neke ne prolaze kroz sve ove korake.
-\\
-\\
-U nastavku su predstavljene 2 metode za pobolj\v savanje kvaliteta slike zasnovane na fazi logici: jedna za slike u boji, druga za crno-bele slike.
+Mnoge fazi metode prate standardan sled koraka (fazifikacija, promena vrednosti funkcije pripadnosti, defazifikacija), dok neke ne prolaze kroz sve ove korake.\\
 
-\newpage
+U nastavku su predstavljene dve metode za pobolj\v savanje kvaliteta slike zasnovane na fazi logici: jedna za slike u boji, druga za crno-bele slike.
+
 \subsection{Tehnika za pobolj\v savanje kvaliteta crno-belih slika sa lo\v sim kontrastom [3]}
 
 Vrednosti ulazne slike $X$, dimenzija M x N, fazifikuju se primenom funkcije $\mu$:\\
 \begin{align*}
-  \mu_{ij} = \mu(x_{ij}) =  \frac{x_{ij} - x_{min}}{x_{max} - x_{min}}\\ \\
-  0\leq i < M, 0\leq j < N
+  \mu_{ij} = \frac{x_{ij} - x_{min}}{x_{max} - x_{min}}, 
 \end{align*}
-$x_{max}$, $x_{min}$ predstavljaju maksimalnu i minimalnu vrednost piksela koja se mo\v ze na\' ci na slici $X$, respektivno.\\
-$x_{ij}$ predstavlja vrednost piksela na mestu $ij$ slike $X$. Za 8-bitnu sliku, ta vrednost mo\v ze biti u intervalu $[0, 2^8 - 1]$. \\ 
-$\mu_{ij}$ predstavlja stepen osvetljenosti koju ima piksel $ij$ na ulaznoj slici $X$. U fazi terminologiji, $\mu$ je funkcija pripadnosti i omogu\' cava 
-prevo\dj enje nefazi ulaza (slika $X$) u njen odgovaraju\' ci fazi oblik.
-Stoga, $0\leq \mu_{ij} \leq 1$.\\
+gde je $0\leq i < M, 0\leq j < N$, $x_{max}$ maksimalna, a $x_{min}$ minimalna vrednost piksela na slici $X$ i $x_{ij}$ vrednost piksela na mestu $ij$ slike $X$. Za 8-bitnu sliku, vrednost pikesla mo\v ze biti u intervalu $[0, 2^8 - 1]$. \\ 
+$\mu_{ij}$ predstavlja stepen osvetljenosti koju ima piksel $ij$ na ulaznoj slici $X$. U fazi terminologiji, $\mu$ je funkcija pripadnosti i omogu\' cava prevo\dj enje nefazi ulaza (slika $X$) u njen odgovaraju\' ci fazi oblik. Primetimo da je $0\leq \mu_{ij} \leq 1$.\\
 
 Kako bi se dobio \v sto bolji rezultat, za modifikaciju funkcije pripadnosti se uzima poznati INT operator, koji su predlo\v zili King i Pal 1981. godine [5].\\
 
@@ -525,15 +514,13 @@ funkcije pripadnosti od 0.5 ima\' ce ve\' cu vrednost.
 Nakon modifikacije funkcije pripadnosti, dobijene vrednosti treba defazifikovati i na taj na\v cin dobiti nove nijanse sive, izlaznu sliku.\\
 Izlazna slika $Y$ se dobija primenom inverzne funkcije $\mu^{-1}$:\\
 \begin{align*}
-  y_{ij} = \mu^{-1}(\bar\mu_{ij})\\
-  y_{ij} = x_{min} + \bar\mu \cdot (x_{max} - x_{min})
+  y_{ij} = \mu^{-1}(\bar\mu_{ij})= x_{min} + \bar\mu \cdot (x_{max} - x_{min}).
 \end{align*}
 
 U nastavku je kod koji implementira gore navedeni algoritam.
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_grayscale.cpp}
 
-\newpage
 Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref{fuzzy_grayscale_output2} su prikazani rezultati rada algoritma.
 
 \begin{multicols}{2}
@@ -584,50 +571,42 @@ Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref
 \end{figure}
 \end{multicols}
 
-\newpage
 \subsection{Tehnika za pobolj\v savanje kvaliteta slika u boji sa lo\v sim kontrastom [4]}
 
 RGB model boja je aditivni model boja koji opisuje boju dodavanjem odgovaraju\' ceg stepena crvene, zelene i plave boje. Taj stepen, za 8-bitnu sliku, mo\v ze imati vrednosti u intervalu $[0, 2^8 - 1]$. 
 Metod opisan u nastavku pobolj\v sava kontrast slike opisane u RGB modelu boja. \\ \\
-Fazifikacija, izmena vrednosti funkcije pripadnosti i defazifikacija se rade posebno na svakom kanalu u\v citane slike $X$, dimenzija M x N.
+Fazifikacija, izmena vrednosti funkcije pripadnosti i defazifikacija se rade posebno na svakom kanalu u\v citane slike $X$, dimenzija M x N.\\
 
+Pre nego \v sto uvedemo funkciju pripadnosti, definisa\' cemo koli\v cni\v cku fazi konstantu $F_{d}$ (eng. denominational fuzzifier) kao
 \begin{align*}
-  \mu_{ij} = \Bigg( 1 + \frac{x_{max} - x_{ij}}{Fd}\Bigg)^{-Fe} \\ \\
-  0\leq i < M, 0\leq j < N
+  F_{d} = \frac{x_{max} - x_{mid}}{0.5^{-\frac{1}{F_{e}}} - 1},
 \end{align*}
+gde je $F_{e}$ eksponencijalna fazi konstanta, $x_{max}$ maksimalna vrednost trenutno posmatranog kanala piksela na slici $X$, $x_{mid}$ srednja vrednost trenutno posatranog kanala piksela na slici $X$.
 
-Kako se formula posebno primenjuje nad svakim kanalom slike $X$, $x_{max}$ predstavlja maksimalnu vrednost trenutno tretiranog kanala piksela koja se mo\v ze na\' ci na slici $X$.\\
-$x_{ij}$ predstavlja vrednost piksela na poziciji $ij$. \\ 
-$\mu_{ij}$ je vrednost funkcije pripadnosti $x_{ij}$, $0\leq \mu_{ij} \leq 1$.\\
-$Fe$ je eksponencijalna fazi konstanta (eng. exponential fuzzifier), koja uzima pozitivne vrednosti. \\
-Eksperimentalno je pokazano da su dobro izabrane vrednosti za Fe 1 i 2. \\
-U na\v soj implementaciji 
+Eksperimentalno je pokazano da su dobro izabrane vrednosti za $F_e$ 1 i 2.\\
+
+Funkciju pripadnosti za jedan kanal (R, G ili B) defini\v semo na slede\' ci na\v cin:
 \begin{align*}
-  Fe = 2\\
+  \mu_{ij} = \Bigg( 1 + \frac{x_{max} - x_{ij}}{F_d}\Bigg)^{-Fe},
 \end{align*}
-$Fd$ je koli\v cni\v cka fazi konstanta (eng. denominational fuzzifier), koja uzima pozitivne vrednosti. \\
-\begin{align*}
-  Fd = \frac{x_{max} - x_{mid}}{0.5^{\frac{-1}{Fe}} - 1}
-\end{align*}
-\\
-$x_{mid}$ je srednja vrednost trenutno tretiranog kanala piksela koja se mo\v ze na\' ci na slici $X$. \\ \\
+gde je $0\leq i < M, 0\leq j < N$. Primetimo da va\v zi $0\leq \mu_{ij} \leq 1$.\\
+
 Nakon fazifikacije se vr\v si modifikacija funkcije pripadnosti za svaki kanal svakog piksela kori\v s\' cenjem $INT$ operatora definisanog u formuli (\ref{int_operator}).\\
 \\
-Defazifikacija se vr\v si kori\v s\' cenjem:\\
+Defazifikacija se vr\v si na slede\' ci na\v cin:\\
 \begin{align*}
-  y_{ij} = \mu^{-1}(\bar\mu_{ij})\\
-  y_{ij} = x_{max} - Fd \cdot (\bar\mu_{ij})^{-Fe} + Fd\\
+  y_{ij} = \mu^{-1}(\bar\mu_{ij})= x_{max} - F_d \cdot (\bar\mu_{ij})^{-F_e} + F_d,
 \end{align*}
+gde je $\bar\mu_{ij}$ rezultat primene INT operatora n\mbox a $\mu_{ij}$. \\
 
-$\bar\mu_{ij}$ je rezultat primene INT operatora n\mbox a $\mu_{ij}$. \\
-$y_{ij}$ trenutno tretirani kanal piksela koji \' ce \v ciniti izlaznu sliku $Y$.\\
-\\
-Kombinovanjem novodobijenih vrednosti crvene, zelene i plave boje svakog piksela ulazne slike $X$, dobija se izlazna slika $Y$. \\ \\
+Defazifikacijom dobijamo vrednost trenutnog kanala piksela ($y_{ij}$) koji \' ce \v ciniti izlaznu sliku $Y$.\\
+
+Kombinovanjem novodobijenih vrednosti crvene, zelene i plave boje svakog piksela ulazne slike $X$, dobija se izlazna slika $Y$. \\
+
 U nastavku je prikazan kod kao reprezentacija prikazanog algoritma. \\
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_color_latex.cpp}
 
-\newpage
 Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani rezultati rada algoritma.
 
 \begin{multicols}{2}
@@ -679,7 +658,6 @@ Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani 
 \end{figure}
 \end{multicols}
 
-\newpage
 \subsection{Pore\dj enje rezultata metoda za pobolj\v savanje kvaliteta slika u boji, crno-belih slika i metoda pode\v savanja histograma}
 Metoda pode\v savanja histograma (eng. histogram equalization - HE) je jedna od najpopularnijih metoda za obradu slika. 
 Zbog toga \v sto su njeni rezultati dobri, upore\dj eni su sa rezultatima predstavljenih fazi metoda. \\  
@@ -716,13 +694,7 @@ Zbog toga \v sto su njeni rezultati dobri, upore\dj eni su sa rezultatima predst
 \end{figure}
 \end{multicols}
 
-Na osnovu dobijenih rezultata se uveravamo u to da HE metod daje rezultate vredne pa\v znje. Ponekad (Slika \ref{wood1_output}) rezultat HE metoda nije ni blizu onoga
-\v sto bi uradila pandan fazi metoda. \\
-Ipak, to ne zna\v ci da je rezultat lo\v siji - zavisi \v sta je posmatra\v cu potrebno od slike. U slu\v caju da je to mo\v zda ve\' ca koli\v cina informacija,
-Slika \ref{wood1_output} daje najbolje rezultate. \\ 
-Sude\' ci po tome koliko uspe\v sno je pobolj\v san kontrast, definitivno su pobednici fazi metode.
-
-\newpage
+Na osnovu dobijenih rezultata se uveravamo u to da HE metod daje rezultate vredne pa\v znje. Ponekad (Slika \ref{wood1_output}) rezultat HE metoda nije ni blizu onoga \v sto bi uradila pandan fazi metoda. Ipak, to ne zna\v ci da je rezultat lo\v siji - zavisi \v sta je posmatra\v cu potrebno od slike. U slu\v caju da je to mo\v zda ve\' ca koli\v cina informacija, Slika \ref{wood1_output} daje najbolje rezultate. Sude\' ci po tome koliko uspe\v sno je pobolj\v san kontrast, definitivno su pobednici fazi metode.
 
 \begin{multicols}{2}
 % first column
@@ -791,7 +763,6 @@ Sude\' ci po tome koliko uspe\v sno je pobolj\v san kontrast, definitivno su pob
 Kada je kontrast mera kvaliteta, fazi metode uspevaju da proizvedu ubedljivo bolje rezultate. \\
 Vidno najbolje rezultate daje metoda za pobolj\v savanje kvaliteta slika u boji. 
 
-\newpage
 \section{Zaklju\v cak}
 Teorija fazi skupova i fazi logika imaju zna\v cajnu primenu u procesiranju slika. Neke od tih primena videli smo i u ovom radu - binarizacija slike, detektovanje ivica, pode\v savanje kontrasta i osvetljenosti. \\ \\
 Opisana su dva algoritma, Fuzzy C-means (FCM) za binarizaciju slike i Fuzzy Edge Detection (FED) za detekciju ivica. Ovi algoritmi su pore\dj eni sa algoritmima koji ne koriste fazi logiku. Konkretno, poredili smo FCM sa k-means-om i FED sa Canny Edge Detection (CED) algoritmom. Slike dobijene FCM-om i k-means-om se skoro i ne razlikuju, dok to nije slu\v caj sa FED-om i CED-om, \v ciji su izlazi primetno druga\v ciji. U oba slu\v caja su algoritmi koji koriste fazi logiku bila br\v za.
