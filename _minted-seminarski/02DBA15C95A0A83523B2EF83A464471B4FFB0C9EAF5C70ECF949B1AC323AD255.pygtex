@@ -1,0 +1,72 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{img}\PYG{o}{::}\PYG{n}{Image}\PYG{o}{\PYGZlt{}}\PYG{n}{img}\PYG{o}{::}\PYG{n}{Type}\PYG{o}{::}\PYG{n}{RGB}\PYG{o}{\PYGZgt{}} \PYG{n}{output}\PYG{p}{(}\PYG{n}{rows}\PYG{p}{(),} \PYG{n}{cols}\PYG{p}{());}
+
+\PYG{k+kt}{unsigned} \PYG{n}{max\PYGZus{}R}\PYG{p}{,} \PYG{n}{min\PYGZus{}R}\PYG{p}{;}
+\PYG{k+kt}{unsigned} \PYG{n}{max\PYGZus{}G}\PYG{p}{,} \PYG{n}{min\PYGZus{}G}\PYG{p}{;}
+\PYG{k+kt}{unsigned} \PYG{n}{max\PYGZus{}B}\PYG{p}{,} \PYG{n}{min\PYGZus{}B}\PYG{p}{;}
+\PYG{k+kt}{unsigned} \PYG{n}{R}\PYG{p}{,} \PYG{n}{G}\PYG{p}{,} \PYG{n}{B}\PYG{p}{;}
+
+\PYG{n}{max\PYGZus{}R} \PYG{o}{=} \PYG{n}{min\PYGZus{}R} \PYG{o}{=} \PYG{n}{red}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{n}{max\PYGZus{}G} \PYG{o}{=} \PYG{n}{min\PYGZus{}G} \PYG{o}{=} \PYG{n}{green}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+\PYG{n}{max\PYGZus{}B} \PYG{o}{=} \PYG{n}{min\PYGZus{}B} \PYG{o}{=} \PYG{n}{blue}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{);}
+    
+\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{rows}\PYG{p}{();} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{1}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}}  \PYG{n}{cols}\PYG{p}{();} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n}{R} \PYG{o}{=} \PYG{n}{red}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{);}
+        \PYG{n}{G} \PYG{o}{=} \PYG{n}{green}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{);}
+        \PYG{n}{B} \PYG{o}{=} \PYG{n}{blue}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{);}
+
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{max\PYGZus{}R} \PYG{o}{\PYGZlt{}} \PYG{n}{R}\PYG{p}{)} \PYG{n}{max\PYGZus{}R} \PYG{o}{=} \PYG{n}{R}\PYG{p}{;}
+        \PYG{k}{else} \PYG{n+nf}{if} \PYG{p}{(}\PYG{n}{min\PYGZus{}R} \PYG{o}{\PYGZgt{}} \PYG{n}{R}\PYG{p}{)} \PYG{n}{min\PYGZus{}R} \PYG{o}{=} \PYG{n}{R}\PYG{p}{;}
+    
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{max\PYGZus{}G} \PYG{o}{\PYGZlt{}} \PYG{n}{G}\PYG{p}{)} \PYG{n}{max\PYGZus{}G} \PYG{o}{=} \PYG{n}{G}\PYG{p}{;}
+        \PYG{k}{else} \PYG{n+nf}{if} \PYG{p}{(}\PYG{n}{min\PYGZus{}G} \PYG{o}{\PYGZgt{}} \PYG{n}{G}\PYG{p}{)} \PYG{n}{min\PYGZus{}G} \PYG{o}{=} \PYG{n}{G}\PYG{p}{;}
+
+        \PYG{k}{if} \PYG{p}{(}\PYG{n}{max\PYGZus{}B} \PYG{o}{\PYGZlt{}} \PYG{n}{B}\PYG{p}{)} \PYG{n}{max\PYGZus{}B} \PYG{o}{=} \PYG{n}{B}\PYG{p}{;}
+        \PYG{k}{else} \PYG{n+nf}{if} \PYG{p}{(}\PYG{n}{min\PYGZus{}B} \PYG{o}{\PYGZgt{}} \PYG{n}{B}\PYG{p}{)} \PYG{n}{min\PYGZus{}B} \PYG{o}{=} \PYG{n}{B}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+ 
+\PYG{k}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{unsigned}\PYG{o}{\PYGZgt{}} \PYG{n}{max\PYGZus{}RGB} \PYG{p}{\PYGZob{}}\PYG{n}{max\PYGZus{}R}\PYG{p}{,} \PYG{n}{max\PYGZus{}G}\PYG{p}{,} \PYG{n}{max\PYGZus{}B}\PYG{p}{\PYGZcb{};}
+\PYG{k}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{o}{\PYGZgt{}} \PYG{n}{mid\PYGZus{}RGB} \PYG{p}{\PYGZob{}(}\PYG{n}{max\PYGZus{}R} \PYG{o}{\PYGZhy{}} \PYG{n}{min\PYGZus{}R}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mf}{2.0}\PYG{p}{,} \PYG{p}{(}\PYG{n}{max\PYGZus{}G} \PYG{o}{\PYGZhy{}} \PYG{n}{min\PYGZus{}G}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mf}{2.0}\PYG{p}{,} \PYG{p}{(}\PYG{n}{max\PYGZus{}B} \PYG{o}{\PYGZhy{}} \PYG{n}{min\PYGZus{}B}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mf}{2.0}\PYG{p}{\PYGZcb{};}
+
+\PYG{k}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{unsigned}\PYG{o}{\PYGZgt{}} \PYG{n}{RGB}\PYG{p}{;}
+\PYG{n}{RGB}\PYG{p}{.}\PYG{n}{reserve}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{);}
+\PYG{k}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{unsigned}\PYG{o}{\PYGZgt{}} \PYG{n}{curr\PYGZus{}RGB}\PYG{p}{;}
+\PYG{n}{curr\PYGZus{}RGB}\PYG{p}{.}\PYG{n}{reserve}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{);}
+
+\PYG{k+kt}{double} \PYG{n}{Fe} \PYG{o}{=} \PYG{l+m+mf}{2.0}\PYG{p}{;}
+\PYG{k+kt}{double} \PYG{n}{Fd}\PYG{p}{;}
+
+\PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{rows}\PYG{p}{();} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+    \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}} \PYG{n}{cols}\PYG{p}{();} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{n}{curr\PYGZus{}RGB}\PYG{p}{.}\PYG{n}{resize}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+        \PYG{n}{curr\PYGZus{}RGB}\PYG{p}{.}\PYG{n+nf}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{red}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{));} 
+        \PYG{n}{curr\PYGZus{}RGB}\PYG{p}{.}\PYG{n+nf}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{green}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{));}
+        \PYG{n}{curr\PYGZus{}RGB}\PYG{p}{.}\PYG{n+nf}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{blue}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{));}
+        \PYG{n}{RGB}\PYG{p}{.}\PYG{n}{resize}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+
+        \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{c} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{c} \PYG{o}{\PYGZlt{}} \PYG{n}{NUM\PYGZus{}CHANNELS}\PYG{p}{;} \PYG{o}{++}\PYG{n}{c}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{n}{Fd} \PYG{o}{=} \PYG{p}{(}\PYG{n}{max\PYGZus{}RGB}\PYG{p}{[}\PYG{n}{c}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{mid\PYGZus{}RGB}\PYG{p}{[}\PYG{n}{c}\PYG{p}{])} \PYG{o}{/} \PYG{l+m+mf}{0.41421356237309515}\PYG{p}{;}
+            \PYG{c+c1}{// fuzzification}
+            \PYG{k+kt}{double} \PYG{n}{mem\PYGZus{}func} \PYG{o}{=} \PYG{n}{pow}\PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{+} \PYG{p}{(}\PYG{n}{max\PYGZus{}RGB}\PYG{p}{[}\PYG{n}{c}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{curr\PYGZus{}RGB}\PYG{p}{[}\PYG{n}{c}\PYG{p}{])} \PYG{o}{/} \PYG{n}{Fd}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{n}{Fe}\PYG{p}{);}
+            
+            \PYG{c+c1}{// modification of membership function by INT operator}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{mem\PYGZus{}func} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mf}{0.5} \PYG{n}{and} \PYG{n}{mem\PYGZus{}func} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n}{mem\PYGZus{}func} \PYG{o}{=} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{pow}\PYG{p}{(}\PYG{n}{mem\PYGZus{}func}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{n}{mem\PYGZus{}func} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{1} \PYG{n}{and} \PYG{n}{mem\PYGZus{}func} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.5}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n}{mem\PYGZus{}func} \PYG{o}{=} \PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{pow}\PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}} \PYG{n}{mem\PYGZus{}func}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+
+            \PYG{c+c1}{// defuzzification}
+            \PYG{n}{RGB}\PYG{p}{.}\PYG{n+nf}{push\PYGZus{}back}\PYG{p}{(}\PYG{n}{max\PYGZus{}RGB}\PYG{p}{[}\PYG{n}{c}\PYG{p}{]} \PYG{o}{\PYGZhy{}} \PYG{n}{Fd} \PYG{o}{*} \PYG{p}{(}\PYG{n}{pow}\PYG{p}{(}\PYG{n}{mem\PYGZus{}func}\PYG{p}{,} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1} \PYG{o}{/} \PYG{n}{Fe}\PYG{p}{))} \PYG{o}{+} \PYG{n}{Fd}\PYG{p}{);}
+        \PYG{p}{\PYGZcb{}}
+            
+        \PYG{n}{cv}\PYG{o}{::}\PYG{n}{Vec3f} \PYG{n}{BGR}\PYG{p}{(}\PYG{n}{RGB}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{],} \PYG{n}{RGB}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{RGB}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]);}
+        \PYG{n}{output}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)} \PYG{o}{=} \PYG{n}{BGR}\PYG{p}{;}
+    \PYG{p}{\PYGZcb{}}
+\PYG{p}{\PYGZcb{}}
+
+\PYG{k}{return} \PYG{n}{output}\PYG{p}{;}
+\end{Verbatim}

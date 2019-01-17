@@ -80,7 +80,7 @@ Slika $X$, koja se sastoji od M vrsta i N kolona, mo\v ze biti predstavljena kao
 \begin{equation}
   X = \sum_{i=1}^{M}\sum_{j=1}^{N} x_{ij}, \mu_{ij}
 \end{equation}
-$\mu_{ij}$\in [0, 1]$ i predstavlja vrednost funkcije pripadnosti.
+$\mu_{ij} \in [0, 1]$ i predstavlja vrednost funkcije pripadnosti.
 
 
 \section{FCM}
@@ -503,13 +503,14 @@ Stoga, $0\leq \mu_{ij} \leq 1$.\\
 Kako bi se dobio \v sto bolji rezultat, za modifikaciju funkcije pripadnosti se uzima poznati INT operator, koji su predlo\v zili King i Pal 1981. godine [5].\\
 
 INT operator primenjen na vrednostima funkcije pripadnosti $\mu$: \\
-[\
+
+\[
   \bar\mu_{ij}(\mu_{ij}) = 
     \begin{cases} 
       2 * \mu_{ij}^2 & 0\leq \mu_{ij}\leq \mu_{c} \\
       1 - (2 * (1 - \mu_{ij})^2) & \mu_{c}\leq \mu_{ij}\leq 1 
     \end{cases}
-\]
+ \]
 
 Ta\v cka $\mu_{c}$ je grani\v cna vrednost koja se mo\v ze menjati. Naj\v ce\v s\' ce uzimana vrednost za nju je $0.5$ 
 (takodje kori\v s\' cenja i u na\v soj implementaciji). \\
@@ -549,6 +550,8 @@ Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref
   \caption{Rezultat}\label{tree_fuzzy_grayscale_output}
 \end{figure}
 \end{multicols}
+
+\newpage
 
 \begin{multicols}{2}
 % first column
@@ -622,9 +625,8 @@ $y_{ij}$ trenutno tretirani kanal piksela koji \' ce \v ciniti izlaznu sliku $Y$
 \\
 Kombinovanjem novodobijenih vrednosti crvene, zelene i plave boje svakog piksela ulazne slike $X$, dobija se izlazna slika $Y$.
 
-\inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_color.cpp}
+\inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_color_latex.cpp}
 
-\newpage
 Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani rezultati rada algoritma.
 
 \begin{multicols}{2}
@@ -642,6 +644,7 @@ Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani 
   \caption{Rezultat}\label{river_output}
 \end{figure}
 \end{multicols}
+
 
 \begin{multicols}{2}
 % first column
