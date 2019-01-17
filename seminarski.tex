@@ -44,7 +44,7 @@
 
 \begin{abstract}
   U ovom radu je predstavljena primena fazi logike u obradi slika. \\
-  Njen zna\v caj za ovu oblast je pribli\v zen \v citaocu kroz detaljan opis nekoliko algoritama i uporedjivanjem rezultata sa nekim drugim nefazi metodama.\\ \\
+  Njen zna\v caj za ovu oblast je pribli\v zen \v citaocu kroz detaljan opis nekoliko algoritama i uporedjivanjem rezultata istih sa nekim drugim nefazi metodama.\\ \\
   Da li metode za obradu slika zasnovane na fazi logici daju bolje rezultate od tradicionalnih metoda, da li su algoritmi slo\v zeniji, br\v zi ili pak,
   fazi logika nije uspela da nadje svoje mesto u ovoj oblasti, sazna\' cete \v citaju\' ci ovaj rad. \\ \\
   Kodovi su pisani u jeziku \textit{C++} pomo\' cu biblioteke \textit{OpenCV}. \\
@@ -61,6 +61,22 @@ U matematici smo do sad navikli da je ne\v sto ta\v cno ili neta\v cno, da ne\v 
 Fazi logiku je 1965. godine uveo Lotfi Zadeh i ona nam u velikoj meri mo\v ze pomo\' ci za re\v savanje pomenutih problema. Fazi skupovi se razlikuju od klasi\v cnih skupova kod kojih je granica jasna (element ili prripada ili ne pripada skupu). Zadeh je uop\v stio klasi\v cne skupove tako \v sto je pro\v sirio skup valuacije $\{0, 1\}$ na interval realnih brojeva $[0, 1]$. Stepen pripadnosti nekog elementa fazi skupu opisuje koliko taj element odgovara pojmu koji je reprezentovan fazi skupom. Konkretno, element $x$ pripada skupu $A$ sa stepenom $\mu_{A}(x)$, gde je $\mu_{A} : A \rightarrow [0, 1]$ karakteristi\v cna funkcija skupa $A$.\\
 
 U ovom radu smo koristili upravo ove ideje kako bismo odredili da li je piksel crn ili beo, da li je piksel ivica ili nije, da li je dovoljno osvetljen ili ne.\\
+
+Obrada slika kori\v s\' cenjem fazi logike nije jedinstvena teorija, ve\' c kolekcija razli\v citih fazi metoda za obradu slika, koji mogu da razumeju, opi\v su i 
+obrade sliku, njene delove ili karakteristike, posmatraju\' ci je kao fazi skup. \\
+Reprezentacija i obrada slike zavise od izabranog metoda i problema koji je potrebno re\v siti.
+Najrazli\v citije fazi tehnike omogu\' cavaju odgovaraju\' ci okvir za napredak jer su zasnovane na znanju (eng. knowledge-based). [4] \\ 
+Mogu da obrade podatke sa gre\v skom u sluc\v aju da je ista nastala usled neodredjenosti (eng. vagueness) i dvosmislenosti (eng. ambiguity) (ali ne zbog nasumi\v cnosti (eng. randomness)). [4]
+\\ \\ 
+Fazi tehnike za obradu slika, uostalom kao i sve ostale fazi tehnike, sastoje se iz tri faze: fazifikacija, odgovaraju\' ca funkcija za promenu vrednosti funkcije pripadnosti 
+i defazifikacija. Prva i poslednja faza su neophodne zbogtoga \v sto ne postoji odgovaraju\' ci fazi hardver.
+\\ \\ 
+Slika $X$, koja se sastoji od M vrsta i N kolona, mo\v ze biti predstavljena kao
+\begin{equation}
+  X = \sum_{i=1}^{M}\sum_{j=1}^{N} x_{ij}, \mu_{ij}
+\end{equation}
+$\mu_{ij}$\in [0, 1]$ i predstavlja vrednost funkcije pripadnosti.
+
 
 \section{FCM}
 \label{sec:FCM}
