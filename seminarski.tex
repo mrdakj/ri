@@ -521,6 +521,7 @@ U nastavku je kod koji implementira gore navedeni algoritam.
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_grayscale.cpp}
 
+\newpage
 Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref{fuzzy_grayscale_output2} su prikazani rezultati rada algoritma.
 
 \begin{multicols}{2}
@@ -571,6 +572,57 @@ Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref
 \end{figure}
 \end{multicols}
 
+Rezultati metode su jako dobri. Na sve tri slike je kontrast adekvatno pobolj\v san. Napomenuto je da su rezultati dobijeni za $\mu_{c} = 0.5$.
+O\v cigledno je da su u velikoj meri zavisni od $\mu_{c}$. Variraju\' ci vrednost $\mu_{c}$ dobijeni su rezultati koji potvr\dj uju tu \v cinjenicu. \\
+
+\begin{multicols}{3}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/0_234.jpg}
+  \caption{$\mu_{c} = 0.234$}
+\end{figure}
+\columnbreak
+% second column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/0_7.jpg}
+  \caption{$\mu_{c} = 0.7$} \label{good_1}
+\end{figure}
+\columnbreak
+% third column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/1_0.jpg}
+  \caption{$\mu_{c} = 1$}
+\end{figure}
+\end{multicols}
+
+\begin{multicols}{3}
+% first column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/0_3.jpg}
+  \caption{$\mu_{c} = 0.3$}
+\end{figure}
+\columnbreak
+% second column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/0_6.jpg}
+  \caption{$\mu_{c} = 0.6$} \label{good}
+\end{figure}
+\columnbreak
+% third column
+\begin{figure}[H]
+\centering
+\includegraphics[width=5cm]{images/0_9.jpg}
+  \caption{$\mu_{c} = 0.9$}
+\end{figure}
+\end{multicols}
+
+Rezultati nisu dobri, sem oni gde je vrednost $\mu_{c}$ bliska 0.5 (Slika \ref{good_1} i \ref{good}). Na taj na\v cin je eksperimentalno pokazano da je po\v zeljno da $\mu_{c}$ uzima vrednosti bliske 0.5. \\ \\
+
 \subsection{Tehnika za pobolj\v savanje kvaliteta slika u boji sa lo\v sim kontrastom [4]}
 
 RGB model boja je aditivni model boja koji opisuje boju dodavanjem odgovaraju\' ceg stepena crvene, zelene i plave boje. Taj stepen, za 8-bitnu sliku, mo\v ze imati vrednosti u intervalu $[0, 2^8 - 1]$. 
@@ -605,8 +657,8 @@ Kombinovanjem novodobijenih vrednosti crvene, zelene i plave boje svakog piksela
 
 U nastavku je prikazan kod kao reprezentacija prikazanog algoritma. \\
 
-\inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_color_latex.cpp}
-
+\inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_color.cpp}
+\newpage
 Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani rezultati rada algoritma.
 
 \begin{multicols}{2}
