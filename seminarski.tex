@@ -486,7 +486,7 @@ Vrednosti ulazne slike $X$, dimenzija M x N, fazifikuju se primenom funkcije $\m
 \begin{align*}
   \mu_{ij} = \frac{x_{ij} - x_{min}}{x_{max} - x_{min}}, 
 \end{align*}
-gde je $0\leq i < M, 0\leq j < N$, $x_{max}$ maksimalna, a $x_{min}$ minimalna vrednost piksela na slici $X$ i $x_{ij}$ vrednost piksela na mestu $ij$ slike $X$. Za 8-bitnu sliku, vrednost pikesla mo\v ze biti u intervalu $[0, 2^8 - 1]$. \\ 
+gde je $0\leq i < M, 0\leq j < N$, $x_{max}$ maksimalna, a $x_{min}$ minimalna vrednost piksela na slici $X$ i $x_{ij}$ vrednost piksela na mestu $ij$ slike $X$. Za 8-bitnu sliku, vrednost piksela mo\v ze biti u intervalu $[0, 2^8 - 1]$. \\ 
 $\mu_{ij}$ predstavlja stepen osvetljenosti koju ima piksel $ij$ na ulaznoj slici $X$. U fazi terminologiji, $\mu$ je funkcija pripadnosti i omogu\' cava prevo\dj enje nefazi ulaza (slika $X$) u njen odgovaraju\' ci fazi oblik. Primetimo da je $0\leq \mu_{ij} \leq 1$.\\
 
 Kako bi se dobio \v sto bolji rezultat, za modifikaciju funkcije pripadnosti se uzima poznati INT operator, koji su predlo\v zili King i Pal 1981. godine [5].\\
