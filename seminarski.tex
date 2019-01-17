@@ -365,6 +365,8 @@ Po\v sto smo videli kratak opis algoritma, u nastavku dajemo FCM kod radi boljeg
 
 Na Slici \ref{fed_result} je prikazan rezultat rada algoritma.
 
+\newpage
+
 \begin{multicols}{2}
 % first column
 \begin{figure}[H]
@@ -521,37 +523,40 @@ U nastavku je kod koji implementira gore navedeni algoritam.
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_grayscale.cpp}
 
-\newpage
-Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref{fuzzy_grayscale_output2} su prikazani rezultati rada algoritma.
+\vspace{1cm}
+
+Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref{fuzzy_grayscale_output2} su prikazani rezultati rada algoritma.\\
 
 \begin{multicols}{2}
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/tree.jpg}
+\includegraphics[width=7.4cm]{images/tree.jpg}
   \caption{Original}\label{tree_fuzzy_grayscale_input}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_grayscale_0.jpg}
+\includegraphics[width=7.4cm]{images/fuzzy_grayscale_0.jpg}
   \caption{Rezultat}\label{tree_fuzzy_grayscale_output}
 \end{figure}
 \end{multicols}
 
+\newpage
+
 \begin{multicols}{2}
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/wood.jpeg}
+\includegraphics[width=7.4cm]{images/wood.jpeg}
   \caption{Original}\label{tree_fuzzy_grayscale_input}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_grayscale_1.jpg}
+\includegraphics[width=7.4cm]{images/fuzzy_grayscale_1.jpg}
   \caption{Rezultat}\label{fuzzy_grayscale_output1}
 \end{figure}
 \end{multicols}
@@ -560,20 +565,19 @@ Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/field.jpg}
+\includegraphics[width=7.4cm]{images/field.jpg}
   \caption{Original}\label{tree_fuzzy_grayscale_input}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_grayscale_2.jpg}
+\includegraphics[width=7.4cm]{images/fuzzy_grayscale_2.jpg}
   \caption{Rezultat}\label{fuzzy_grayscale_output2}
 \end{figure}
 \end{multicols}
 
-Rezultati metode su jako dobri. Na sve tri slike je kontrast adekvatno pobolj\v san. Napomenuto je da su rezultati dobijeni za $\mu_{c} = 0.5$.
-O\v cigledno je da su u velikoj meri zavisni od $\mu_{c}$. Variraju\' ci vrednost $\mu_{c}$ dobijeni su rezultati koji potvr\dj uju tu \v cinjenicu. \\
+Primetimo da je na sve tri slike kontrast adekvatno pobolj\v san. Rezultati su dobijeni za $\mu_{c} = 0.5$.  O\v cigledno je da su u velikoj meri zavisni od $\mu_{c}$, \v sto potvr\dj uju primeri:\\
 
 \begin{multicols}{3}
 % first column
@@ -621,7 +625,7 @@ O\v cigledno je da su u velikoj meri zavisni od $\mu_{c}$. Variraju\' ci vrednos
 \end{figure}
 \end{multicols}
 
-Rezultati nisu dobri, sem oni gde je vrednost $\mu_{c}$ bliska 0.5 (Slika \ref{good_1} i \ref{good}). Na taj na\v cin je eksperimentalno pokazano da je po\v zeljno da $\mu_{c}$ uzima vrednosti bliske 0.5. \\ \\
+Rezultati nisu dobri, sem oni gde je vrednost $\mu_{c}$ bliska 0.5 (Slika \ref{good_1} i \ref{good}). Na taj na\v cin je eksperimentalno pokazano da je po\v zeljno da $\mu_{c}$ uzima vrednosti bliske 0.5.
 
 \subsection{Tehnika za pobolj\v savanje kvaliteta slika u boji sa lo\v sim kontrastom [4]}
 
@@ -645,7 +649,7 @@ gde je $0\leq i < M, 0\leq j < N$. Primetimo da va\v zi $0\leq \mu_{ij} \leq 1$.
 
 Nakon fazifikacije se vr\v si modifikacija funkcije pripadnosti za svaki kanal svakog piksela kori\v s\' cenjem $INT$ operatora definisanog u formuli (\ref{int_operator}).\\
 \\
-Defazifikacija se vr\v si na slede\' ci na\v cin:\\
+Defazifikacija se vr\v si na slede\' ci na\v cin:
 \begin{align*}
   y_{ij} = \mu^{-1}(\bar\mu_{ij})= x_{max} - F_d \cdot (\bar\mu_{ij})^{-F_e} + F_d,
 \end{align*}
@@ -658,21 +662,21 @@ Kombinovanjem novodobijenih vrednosti crvene, zelene i plave boje svakog piksela
 U nastavku je prikazan kod kao reprezentacija prikazanog algoritma. \\
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_color.cpp}
-\newpage
+
 Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani rezultati rada algoritma.
 
 \begin{multicols}{2}
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/river.jpg}
+\includegraphics[width=7.5cm]{images/river.jpg}
   \caption{Original}\label{river}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_color_1.jpg}
+\includegraphics[width=7.5cm]{images/fuzzy_color_1.jpg}
   \caption{Rezultat}\label{river_output}
 \end{figure}
 \end{multicols}
@@ -682,14 +686,14 @@ Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani 
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/woman.jpeg}
+\includegraphics[width=7.5cm]{images/woman.jpeg}
   \caption{Original}\label{river}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_color_2.jpg}
+\includegraphics[width=7.5cm]{images/fuzzy_color_2.jpg}
   \caption{Rezultat}\label{woman_output}
 \end{figure}
 \end{multicols}
@@ -698,14 +702,14 @@ Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani 
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/cat.jpg}
+\includegraphics[width=7.5cm]{images/cat.jpg}
   \caption{Original}\label{river}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_color_5.jpg}
+\includegraphics[width=7.5cm]{images/fuzzy_color_5.jpg}
   \caption{Rezultat}\label{cat_output}
 \end{figure}
 \end{multicols}
@@ -718,14 +722,14 @@ Zbog toga \v sto su njeni rezultati dobri, upore\dj eni su sa rezultatima predst
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/wood.jpeg}
+\includegraphics[width=7.5cm]{images/wood.jpeg}
   \caption{Originalna slika}\label{river}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/global_HE_1.jpg}
+\includegraphics[width=7.5cm]{images/global_HE_1.jpg}
   \caption{Rezultat metode HE}\label{wood1_output}
 \end{figure}
 \end{multicols}
@@ -734,14 +738,14 @@ Zbog toga \v sto su njeni rezultati dobri, upore\dj eni su sa rezultatima predst
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_grayscale_1.jpg}
+\includegraphics[width=7.5cm]{images/fuzzy_grayscale_1.jpg}
   \caption{Rezultat fazi metode za crno-bele slike}\label{river1}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_color_4.jpg}
+\includegraphics[width=7.5cm]{images/fuzzy_color_4.jpg}
   \caption{Rezultat fazi metode za slike u boji}\label{river_output1}
 \end{figure}
 \end{multicols}
@@ -752,14 +756,14 @@ Na osnovu dobijenih rezultata se uveravamo u to da HE metod daje rezultate vredn
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/tree.jpg}
+\includegraphics[width=7.5cm]{images/tree.jpg}
   \caption{Originalna slika}\label{river}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/global_HE.jpg}
+\includegraphics[width=7.5cm]{images/global_HE.jpg}
   \caption{Rezultat metode HE}\label{river_output2}
 \end{figure}
 \end{multicols}
@@ -784,14 +788,14 @@ Na osnovu dobijenih rezultata se uveravamo u to da HE metod daje rezultate vredn
 % first column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_grayscale_0.jpg}
+\includegraphics[width=7.5cm]{images/fuzzy_grayscale_0.jpg}
   \caption{Rezultat fazi metode za crno-bele slike}\label{river2}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
-\includegraphics[width=8cm]{images/fuzzy_color_3.jpg}
+\includegraphics[width=7.5cm]{images/fuzzy_color_3.jpg}
   \caption{Rezultat fazi metode za slike u boji}\label{river_output3}
 \end{figure}
 \end{multicols}
@@ -812,8 +816,7 @@ Na osnovu dobijenih rezultata se uveravamo u to da HE metod daje rezultate vredn
 \end{figure}
 \end{multicols}
 
-Kada je kontrast mera kvaliteta, fazi metode uspevaju da proizvedu ubedljivo bolje rezultate. \\
-Vidno najbolje rezultate daje metoda za pobolj\v savanje kvaliteta slika u boji. 
+Kada je kontrast mera kvaliteta, fazi metode uspevaju da proizvedu ubedljivo bolje rezultate. Vidno najbolje rezultate daje metoda za pobolj\v savanje kvaliteta slika u boji. 
 
 \section{Zaklju\v cak}
 Teorija fazi skupova i fazi logika imaju zna\v cajnu primenu u procesiranju slika. Neke od tih primena videli smo i u ovom radu - binarizacija slike, detektovanje ivica, pode\v savanje kontrasta i osvetljenosti. \\ \\

@@ -1,0 +1,48 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}iostream\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}vector\PYGZgt{}}
+\PYG{c+cp}{\PYGZsh{}include} \PYG{c+cpf}{\PYGZlt{}opencv2/highgui/highgui.hpp\PYGZgt{}}
+
+\PYG{k+kt}{int} \PYG{n+nf}{main}\PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{argc}\PYG{p}{,} \PYG{k}{const} \PYG{k+kt}{char} \PYG{o}{*}\PYG{n}{argv}\PYG{p}{[])}
+\PYG{p}{\PYGZob{}}
+	\PYG{k}{if} \PYG{p}{(}\PYG{n}{argc} \PYG{o}{!=} \PYG{l+m+mi}{2}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+		\PYG{k}{std}\PYG{o}{::}\PYG{n}{cerr} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{l+s}{\PYGZdq{}Usage: ./fuzzy\PYGZus{}grayscale path\PYGZus{}to\PYGZus{}image\PYGZdq{}} \PYG{o}{\PYGZlt{}\PYGZlt{}} \PYG{k}{std}\PYG{o}{::}\PYG{n}{endl}\PYG{p}{;}
+		\PYG{k}{return} \PYG{l+m+mi}{1}\PYG{p}{;}
+	\PYG{p}{\PYGZcb{}}
+
+	\PYG{c+c1}{// input image}
+	\PYG{n}{cv}\PYG{o}{::}\PYG{n}{Mat} \PYG{n}{input} \PYG{o}{=} \PYG{n}{cv}\PYG{o}{::}\PYG{n}{imread}\PYG{p}{(}\PYG{n}{argv}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{],} \PYG{n}{cv}\PYG{o}{::}\PYG{n}{IMREAD\PYGZus{}GRAYSCALE}\PYG{p}{);}
+    \PYG{c+c1}{// output image}
+    \PYG{n}{cv}\PYG{o}{::}\PYG{n}{Mat} \PYG{n}{output} \PYG{o}{=} \PYG{n}{cv}\PYG{o}{::}\PYG{n}{Mat}\PYG{p}{(}\PYG{n}{input}\PYG{p}{.}\PYG{n}{rows}\PYG{p}{,} \PYG{n}{input}\PYG{p}{.}\PYG{n}{cols}\PYG{p}{,} \PYG{n}{CV\PYGZus{}8UC1}\PYG{p}{,} \PYG{n}{cv}\PYG{o}{::}\PYG{n}{Scalar}\PYG{p}{(}\PYG{l+m+mi}{255}\PYG{p}{));}
+    
+    \PYG{k+kt}{unsigned} \PYG{n}{min\PYGZus{}gray} \PYG{o}{=} \PYG{o}{*}\PYG{k}{std}\PYG{o}{::}\PYG{n}{min\PYGZus{}element}\PYG{p}{(}\PYG{n}{input}\PYG{p}{.}\PYG{n}{begin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{unsigned} \PYG{k+kt}{char}\PYG{o}{\PYGZgt{}}\PYG{p}{(),} \PYG{n}{input}\PYG{p}{.}\PYG{n}{end}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{unsigned} \PYG{k+kt}{char}\PYG{o}{\PYGZgt{}}\PYG{p}{());}
+    \PYG{k+kt}{unsigned} \PYG{n}{max\PYGZus{}gray} \PYG{o}{=} \PYG{o}{*}\PYG{k}{std}\PYG{o}{::}\PYG{n}{max\PYGZus{}element}\PYG{p}{(}\PYG{n}{input}\PYG{p}{.}\PYG{n}{begin}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{unsigned} \PYG{k+kt}{char}\PYG{o}{\PYGZgt{}}\PYG{p}{(),} \PYG{n}{input}\PYG{p}{.}\PYG{n}{end}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{unsigned} \PYG{k+kt}{char}\PYG{o}{\PYGZgt{}}\PYG{p}{());}
+    \PYG{k+kt}{unsigned} \PYG{n}{diff} \PYG{o}{=} \PYG{n}{max\PYGZus{}gray} \PYG{o}{\PYGZhy{}} \PYG{n}{min\PYGZus{}gray}\PYG{p}{;}
+
+    \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{i} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{i} \PYG{o}{\PYGZlt{}} \PYG{n}{input}\PYG{p}{.}\PYG{n}{rows}\PYG{p}{;} \PYG{n}{i}\PYG{o}{++}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+        \PYG{k}{for} \PYG{p}{(}\PYG{k+kt}{int} \PYG{n}{j} \PYG{o}{=} \PYG{l+m+mi}{0}\PYG{p}{;} \PYG{n}{j} \PYG{o}{\PYGZlt{}}  \PYG{n}{input}\PYG{p}{.}\PYG{n}{cols}\PYG{p}{;} \PYG{o}{++}\PYG{n}{j}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+            \PYG{c+c1}{// fuzzification}
+            \PYG{k+kt}{double} \PYG{n}{mem\PYGZus{}func} \PYG{o}{=} \PYG{p}{(}\PYG{n}{input}\PYG{p}{.}\PYG{n}{at}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{unsigned} \PYG{k+kt}{char}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{n}{min\PYGZus{}gray}\PYG{p}{)} \PYG{o}{/} \PYG{k+kt}{double}\PYG{p}{(}\PYG{n}{diff}\PYG{p}{);}
+            
+            \PYG{c+c1}{// modification of membership function by INT operator}
+            \PYG{k}{if} \PYG{p}{(}\PYG{n}{mem\PYGZus{}func} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mf}{0.5} \PYG{n}{and} \PYG{n}{mem\PYGZus{}func} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{0}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n}{mem\PYGZus{}func} \PYG{o}{=} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{pow}\PYG{p}{(}\PYG{n}{mem\PYGZus{}func}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+            \PYG{k}{else} \PYG{k}{if} \PYG{p}{(}\PYG{n}{mem\PYGZus{}func} \PYG{o}{\PYGZlt{}=} \PYG{l+m+mi}{1} \PYG{n}{and} \PYG{n}{mem\PYGZus{}func} \PYG{o}{\PYGZgt{}} \PYG{l+m+mf}{0.5}\PYG{p}{)} \PYG{p}{\PYGZob{}}
+                \PYG{n}{mem\PYGZus{}func} \PYG{o}{=} \PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{2} \PYG{o}{*} \PYG{n}{pow}\PYG{p}{(}\PYG{l+m+mi}{1} \PYG{o}{\PYGZhy{}} \PYG{n}{mem\PYGZus{}func}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{);}
+            \PYG{p}{\PYGZcb{}}
+
+            \PYG{c+c1}{// defuzzification}
+            \PYG{n}{output}\PYG{p}{.}\PYG{n}{at}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{unsigned} \PYG{k+kt}{char}\PYG{o}{\PYGZgt{}}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,}\PYG{n}{j}\PYG{p}{)} \PYG{o}{=} \PYG{n}{min\PYGZus{}gray} \PYG{o}{+} \PYG{n}{mem\PYGZus{}func} \PYG{o}{*} \PYG{n}{diff}\PYG{p}{;} 
+        \PYG{p}{\PYGZcb{}}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{c+c1}{// Show and save}
+	\PYG{n}{namedWindow}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Display window\PYGZdq{}}\PYG{p}{,} \PYG{n}{cv}\PYG{o}{::}\PYG{n}{WINDOW\PYGZus{}AUTOSIZE}\PYG{p}{);}
+	\PYG{n}{imshow}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}Display window\PYGZdq{}}\PYG{p}{,} \PYG{n}{output}\PYG{p}{);}
+	\PYG{n}{cv}\PYG{o}{::}\PYG{n}{waitKey}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{);}
+	\PYG{n}{imwrite}\PYG{p}{(}\PYG{l+s}{\PYGZdq{}fuzzy\PYGZus{}grayscale.jpg\PYGZdq{}}\PYG{p}{,} \PYG{n}{output}\PYG{p}{);}
+
+    \PYG{k}{return} \PYG{l+m+mi}{0}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
