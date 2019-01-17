@@ -54,12 +54,12 @@ Kodovi su pisani u jeziku \textit{C++} pomo\' cu biblioteke \textit{OpenCV}.  Na
 
 \newpage
 \section{Uvod}
-U matematici smo do sad navikli da je ne\v sto ta\v cno ili neta\v cno, da ne\v sto pripada ili ne pripada skupu. Me\dj utim, nekad je te\v sko povu\' ci granicu i odrediti kad je ne\v sto 0, a kad 1. \v Sto smo bli\v zi granici, to nesigurnost ve\' ca. Na primer, ako \v zelimo da klasifikujemo ljude na niske i visoke i postavimo granicu na $170 cm$, dobijamo da je osoba visoka $170 cm$ visoka, dok je osoba visoka $169 cm$ niska, \v sto i nema mnogo smisla.\\
+U matematici smo do sad navikli da je ne\v sto ta\v cno ili neta\v cno, da ne\v sto pripada ili ne pripada skupu. Me\dj utim, nekad je te\v sko povu\' ci granicu i odrediti kad je ne\v sto 0, a kad 1. \v Sto smo bli\v zi granici, to je nesigurnost ve\' ca. Na primer, ako \v zelimo da klasifikujemo ljude na niske i visoke i postavimo granicu na $170 cm$, dobijamo da je osoba visoka $170 cm$ visoka, dok je osoba visoka $169 cm$ niska, \v sto i nema mnogo smisla.\\
 
 Fazi logiku je 1965. godine uveo Lotfi Zadeh i ona nam u velikoj meri mo\v ze pomo\' ci za re\v savanje pomenutih problema. \\
-Peirce je bio jedan od prvih mislilaca koji se ozbiljnije pozabavio pitanjem neodredjenosti (eng. vagueness), jo\v s mnogo pre Zadeha., po\v cetkom 20. veka. 
-Pierce nije verovao u jasnu razliku izmedju ta\v cnog i neta\v cnog, ve\' c u to da je \v zivot continuum.
-Drugi poznati nau\v cnici i filozofi su se dalje bavili ovom idejom. Rasel je govorio: "Sav jezik je neodredjen. Neodredjenost je pitanje stepena (eng. Vagueness is a matter of degree)." [6]
+Pirs( Peirce) je bio jedan od prvih mislilaca koji se ozbiljnije pozabavio pitanjem neodre\dj enosti (eng. vagueness), jo\v s mnogo pre Zadeha, po\v cetkom 20. veka. 
+Pirs nije verovao u jasnu granicu izmedju ta\v cnog i neta\v cnog, ve\' c u to da je \v zivot kontinuum.
+Drugi poznati nau\v cnici i filozofi su se dalje bavili ovom idejom. Rasel je govorio: \"Sav jezik je neodre\dj en. Neodre\dj enost je pitanje stepena (eng. Vagueness is a matter of degree)." [6]
 \\ \\
 Fazi skupovi se razlikuju od klasi\v cnih skupova kod kojih je granica jasna (element ili prripada ili ne pripada skupu). Zadeh je uop\v stio klasi\v cne skupove tako \v sto je pro\v sirio skup valuacije $\{0, 1\}$ na interval realnih brojeva $[0, 1]$. Stepen pripadnosti nekog elementa fazi skupu opisuje koliko taj element odgovara pojmu koji je reprezentovan fazi skupom. Konkretno, element $x$ pripada skupu $A$ sa stepenom $\mu_{A}(x)$, gde je $\mu_{A} : A \rightarrow [0, 1]$ karakteristi\v cna funkcija skupa $A$.\\
 
@@ -74,7 +74,7 @@ Mogu da obrade podatke sa gre\v skom u sluc\v aju da je ista nastala usled neodr
 Fazi tehnike za obradu slika, uostalom kao i sve ostale fazi tehnike, sastoje se iz tri faze: fazifikacija, odgovaraju\' ca funkcija za promenu vrednosti funkcije pripadnosti 
 i defazifikacija. Prva i poslednja faza su neophodne zbogtoga \v sto ne postoji odgovaraju\' ci fazi hardver. [7]
 \\ \\ 
-Slika $X$, koja se sastoji od M vrsta i N kolona, mo\v ze biti predstavljena kao
+Slika $X$, koja se sastoji od M vrsta i N kolona, mo\v ze biti predstavljena kao fazi skup
 \begin{equation}
   X = \sum_{i=1}^{M}\sum_{j=1}^{N} x_{ij}, \mu_{ij}
 \end{equation}
