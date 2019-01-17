@@ -1,3 +1,4 @@
+// output image dimensions are the same as the input image dimensions
 img::Image<img::Type::GRAYSCALE> output(rows(), cols());
 
 unsigned min_gray = *std::min_element((*this).cbegin(), (*this).cend());

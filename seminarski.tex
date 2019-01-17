@@ -38,7 +38,7 @@
 \usepackage{minted}
 
 \title{Primena fazi logike u obradi slika}
-\author{Jelena Mrdak,\\ Tijana Jevti\' c}
+\author{Jelena Mrdak\\ Tijana Jevti\' c}
 
 \begin{document}
 \maketitle
@@ -58,23 +58,23 @@ U matematici smo do sad navikli da je ne\v sto ta\v cno ili neta\v cno, da ne\v 
 
 Fazi logiku je 1965. godine uveo Lotfi Zadeh i ona nam u velikoj meri mo\v ze pomo\' ci za re\v savanje pomenutih problema. \\
 Pirs( Peirce) je bio jedan od prvih mislilaca koji se ozbiljnije pozabavio pitanjem neodre\dj enosti (eng. vagueness), jo\v s mnogo pre Zadeha, po\v cetkom 20. veka. 
-Pirs nije verovao u jasnu granicu izmedju ta\v cnog i neta\v cnog, ve\' c u to da je \v zivot kontinuum.
-Drugi poznati nau\v cnici i filozofi su se dalje bavili ovom idejom. Rasel je govorio: \"Sav jezik je neodre\dj en. Neodre\dj enost je pitanje stepena (eng. Vagueness is a matter of degree)." [6]
+Pirs nije verovao u jasnu granicu izme\dj u ta\v cnog i neta\v cnog, ve\' c u to da je \v zivot kontinuum.
+Drugi poznati nau\v cnici i filozofi su se dalje bavili ovom idejom. Rasel je govorio -Sav jezik je neodre\dj en. Neodre\dj enost je pitanje stepena (eng. Vagueness is a matter of degree). [6]
 \\ \\
 Fazi skupovi se razlikuju od klasi\v cnih skupova kod kojih je granica jasna (element ili pripada ili ne pripada skupu). Zadeh je uop\v stio klasi\v cne skupove tako \v sto je pro\v sirio skup valuacije $\{0, 1\}$ na interval realnih brojeva $[0, 1]$. Stepen pripadnosti nekog elementa fazi skupu opisuje koliko taj element odgovara pojmu koji je reprezentovan fazi skupom. Konkretno, element $x$ pripada skupu $A$ sa stepenom $\mu_{A}(x)$, gde je $\mu_{A} : A \rightarrow [0, 1]$ karakteristi\v cna funkcija skupa $A$.\\
 
 U ovom radu smo koristili upravo ove ideje kako bismo odredili da li je piksel crn ili beo, da li je piksel ivica ili nije, da li je dovoljno osvetljen ili ne.\\
 
 Obrada slika kori\v s\' cenjem fazi logike nije jedinstvena teorija, ve\' c kolekcija razli\v citih fazi metoda za obradu slika, koji mogu da razumeju, opi\v su i 
-obrade sliku, njene delove ili karakteristike, posmatraju\' ci je kao fazi skup. \\
+obrade sliku, njene delove ili karakteristike, posmatraju\' ci je kao fazi skup.
 Reprezentacija i obrada slike zavise od izabranog metoda i problema koji je potrebno re\v siti.
 Najrazli\v citije fazi tehnike omogu\' cavaju odgovaraju\' ci okvir za napredak jer su zasnovane na znanju (eng. knowledge-based). [7] \\ 
-Mogu da obrade podatke sa gre\v skom u sluc\v caju da je ista nastala usled neodredjenosti i dvosmislenosti (eng. ambiguity) (ali ne zbog nasumi\v cnosti (eng. randomness)). [4]
+Mogu da obrade podatke sa gre\v skom u sluc\v caju da je ista nastala usled neodre\dj enosti i dvosmislenosti (eng. ambiguity) (ali ne zbog nasumi\v cnosti (eng. randomness)). [4]
 \\ \\ 
 Fazi tehnike za obradu slika, uostalom kao i sve ostale fazi tehnike, sastoje se iz tri faze: fazifikacija, odgovaraju\' ca funkcija za promenu vrednosti funkcije pripadnosti 
 i defazifikacija. Prva i poslednja faza su neophodne zbog toga \v sto ne postoji odgovaraju\' ci fazi hardver. [7]
 \\ \\ 
-Slika $X$, koja se sastoji od M vrsta i N kolona, mo\v ze biti predstavljena kao fazi skup
+Slika $X$, dimenzija M x N, mo\v ze biti predstavljena kao fazi skup [8]
 \begin{equation}
   X = \sum_{i=1}^{M}\sum_{j=1}^{N} x_{ij}, \mu_{ij}
 \end{equation}
@@ -172,14 +172,14 @@ Rezultat izvr\v savanja algoritma je prikazan ispod.
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{images/storm_trooper.jpg}
-  \caption{input}\label{storm_trooper_input}
+  \caption{Original}\label{storm_trooper_input}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{images/storm_trooper_binarized_fcm.png}
-  \caption{output}
+  \caption{Rezultat}
 \end{figure}
 \end{multicols}
 
@@ -188,14 +188,14 @@ Rezultat izvr\v savanja algoritma je prikazan ispod.
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard.jpg}
-  \caption{input}\label{blackboard_input}
+  \caption{Original}\label{blackboard_input}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard_binarized_fcm.png}
-  \caption{output}
+  \caption{Rezultat}
 \end{figure}
 \end{multicols}
 
@@ -213,7 +213,7 @@ Na slede\' cim slikama su prikazani rezultati.
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{images/storm_trooper_binarized_fcm.png}
-  \caption{FCM output}\label{storm_trooper_fcm}
+  \caption{FCM rezultat}\label{storm_trooper_fcm}
  Broj iteracija: 7
 \end{figure}
 \columnbreak
@@ -221,7 +221,7 @@ Na slede\' cim slikama su prikazani rezultati.
 \begin{figure}[H]
 \centering
 \includegraphics[width=5cm]{images/storm_trooper_binarized_kmeans.png}
-  \caption{k-means output}\label{storm_trooper_kmeans}
+  \caption{k-means rezultat}\label{storm_trooper_kmeans}
  Broj iteracija: 6
 \end{figure}
 \end{multicols}
@@ -233,7 +233,7 @@ Na slede\' cim slikama su prikazani rezultati.
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard_binarized_fcm.png}
-  \caption{FCM output}\label{blackboard_fcm}
+  \caption{FCM rezultat}\label{blackboard_fcm}
  Broj iteracija: 7
 \end{figure}
 \columnbreak
@@ -241,7 +241,7 @@ Na slede\' cim slikama su prikazani rezultati.
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard_binarized_kmeans.png}
-  \caption{k-means output}\label{blackboard_kmeans}
+  \caption{k-means rezultat}\label{blackboard_kmeans}
   Broj iteracija: 7
 \end{figure}
 \end{multicols}
@@ -259,7 +259,7 @@ Mo\v zemo primetiti da su slike \ref{storm_trooper_fcm} i \ref{storm_trooper_kme
   1000 & 8 & 42\\
   1500 & 12 & 63 
 \end{tabular}
-  \caption{Input Slika \ref{storm_trooper_input}}
+  \caption{Original Slika \ref{storm_trooper_input}}
   \label{vreme_storm}
 \end{table}
 
@@ -275,7 +275,7 @@ Mo\v zemo primetiti da su slike \ref{storm_trooper_fcm} i \ref{storm_trooper_kme
   100 & 17 & 89\\
   150 & 25 & 133 
 \end{tabular}
-  \caption{Input Slika \ref{blackboard_input}}
+  \caption{Original Slika \ref{blackboard_input}}
   \label{vreme_blackboard}
 \end{table}
 \end{multicols}
@@ -356,7 +356,7 @@ Pre nego \v sto damo kod, ukratko \' cemo opisati korake algoritma:
 \begin{itemize}
   \item \textbf{Pretprocesiranje} - ako je slika u boji, konvertovati je u sivu sliku.
   \item \textbf{Pretprocesiranje} - primeniti Gausov filter na sliku kako bismo je malo zamutili.
-  \item \textbf{Fazifikacija} - ra\v cunanje karakteristi\v cne funkcije $\mu_{edge}$ za svaki piksel sa slike. Takodje, \v cuvanje najve\' ce vrednosti funkcije (promenljiva MAX).
+  \item \textbf{Fazifikacija} - ra\v cunanje karakteristi\v cne funkcije $\mu_{edge}$ za svaki piksel sa slike. Tako\dj e, \v cuvanje najve\' ce vrednosti funkcije (promenljiva MAX).
   \item \textbf{Normiranje vrednosti} - vrednosti karakteristi\v cne funkcije podeliti sa MAX:
     \begin{equation*}
       \mu_{edge}(p) = \frac{\mu_{edge}(p)}{MAX}
@@ -364,7 +364,7 @@ Pre nego \v sto damo kod, ukratko \' cemo opisati korake algoritma:
   \item \textbf{Defazifikacija} - na osnovu vrednosti $\mu_{edge}(p)$ i nekog unapred datog praga (threshold), pikselu $p$ dodeliti crnu ili belu boju.
 \end{itemize}
 
-Po\v sto smo videli kratak opis algoritma, u nastavku dajemFCMo kod radi boljeg razumevanja istog.
+Po\v sto smo videli kratak opis algoritma, u nastavku dajemo FCM kod radi boljeg razumevanja istog.
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/edge_detection.cpp}
 
@@ -375,14 +375,14 @@ Na Slici \ref{fed_result} je prikazan rezultat rada algoritma.
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard.jpg}
-  \caption{input}\label{blackboard_fed_input}
+  \caption{Original}\label{blackboard_fed_input}
 \end{figure}
 \columnbreak
 % second column
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard_35.png}
-  \caption{output}\label{fed_result}
+  \caption{Rezultat}\label{fed_result}
 \end{figure}
 \end{multicols}
 
@@ -420,7 +420,7 @@ Na Slikama \ref{fed_output} i \ref{canny_output} mo\v zemo videti izlaze ovih al
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard_35.png}
-  \caption{FED output}\label{fed_output}
+  \caption{FED rezultat}\label{fed_output}
 \end{figure}
 
 \columnbreak
@@ -428,7 +428,7 @@ Na Slikama \ref{fed_output} i \ref{canny_output} mo\v zemo videti izlaze ovih al
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/blackboard_canny.png}
-  \caption{Canny output}\label{canny_output}
+  \caption{Canny rezultat}\label{canny_output}
 \end{figure}
 \end{multicols}
 
@@ -439,7 +439,7 @@ Iako naizgled izgleda da FED daje bolje rezultate, ivice kod Canny algoritma su 
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/fuzzy.png}
-  \caption{FED output}
+  \caption{FED rezultat}
 \end{figure}
 
 \columnbreak
@@ -447,7 +447,7 @@ Iako naizgled izgleda da FED daje bolje rezultate, ivice kod Canny algoritma su 
 \begin{figure}[H]
 \centering
 \includegraphics[width=7cm]{images/canny.png}
-  \caption{Canny output}
+  \caption{Canny rezultat}
 \end{figure}
 \end{multicols}
 
@@ -456,24 +456,24 @@ U pore\dj enju sa CED, FED je dosta br\v zi. Naime, za obradu Slike \ref{blackbo
 Jo\v s jedna prednost FED u odnosu na CED je to \v sto se mnogo lak\v se implementira.
 
 
-\section{Ulep\v savanje slika kori\v s\v cenjem fazi logike}
+\section{Pobolj\v savanje kvaliteta slike kori\v s\v cenjem fazi logike}
 
-Ulep\v savanje slika (eng. image enhancement) predstavlja jedan od osnovnih zadataka obrade slika. \\
+Pobolj\v savanje kvaliteta slike (eng. image enhancement) predstavlja jedan od osnovnih zadataka obrade slika.
 Cilj je obraditi ulaznu sliku tako da izlazna bude pogodnija od ulazne za neku specifi\v cnu upotrebu. 
 
-Slike sa lo\v sim kontrastom, lo\v se osvetljene i zamu\' cene slike se dobijaju usled nesavr\v senosti uredjaja koji ih prave (senzori, fotoaparati, itd.), neodgovaraju\' cih uslova za vreme pravljenja slike (lo\v se svetlo) i tokom prenosa slika.
-\\ \\
+Slike sa lo\v sim kontrastom, lo\v se osvetljene i zamu\' cene slike se dobijaju usled nesavr\v senosti ure\dj aja koji ih prave (senzori, fotoaparati, itd.), neodgovaraju\' cih uslova za vreme pravljenja slike (lo\v se svetlo) i tokom prenosa slika.
+\\
 Sa druge strane, slike sa dobrim kontrastom, dobro osvetljene slike, one koje daju dovoljno informacija posmatra\v cu, potrebne su za veliki broj drugih oblasti (medicina, analiza prostora, autonomna navigacija, obrada slika dobijenih satelitima) ili za dalju obradu slika.
 \\ \\
-Metodi za ulep\v savanje slika se mogu podeliti u 3 grupe [4]:
+Metodi za pobolj\v savanje kvaliteta slike se mogu podeliti u 3 grupe [4]:
 \\
 \\1. Prostorni metod (eng. spatial domain method)
 \\2. Metod domena frekvencija (eng. frequency domain method)
 \\3. Fazi metod (eng. fuzzy method)
 \\ \\ 
-Prostorni metodi primenjuju odredjenu transformaciju nad svakim pikselom slike. Daju dosta dobre rezultate, ali se mo\v ze desiti da rezultuju\' ca slika ne izgleda uvek adekvatno (npr. da izgleda isprano).
+Prostorni metodi primenjuju odre\dj enu transformaciju nad svakim pikselom slike pojedina\v cno. Daju dosta dobre rezultate, ali se mo\v ze desiti da rezultuju\' ca slika ne izgleda uvek adekvatno (npr. da izgleda isprano).
 Neke od prostornih metoda zasnivaju svoj rad na histogramu slike (pomeranje histograma (eng. histogram sliding), razvla\v cenje histograma (eng. histogram stretching), pode\v savanje histograma (eng. histogram equalization)).
-Rezultati metoda pode\v savanja histograma \' ce biti poredjeni sa rezultatima koje daje predstavljena fazi metoda.
+Rezultati metoda pode\v savanja histograma \' ce biti pore\dj eni sa rezultatima koje daje predstavljena fazi metoda.
 \\ \\ 
 Metod domena frekvencija se pokazuje kao dosta skup [3], \v cak i uz kori\v s\' cenje brzih transformacija (npr. brza Furijeova transformacija), tako da nije pogodan za obradu slika u realnom vremenu.
 \\ \\ 
@@ -482,39 +482,39 @@ Postoji veliki broj metoda koji kombinuje metodu pode\v savanja histograma sa me
 Mnoge fazi metode prate standardan sled koraka (fazifikacija, promena vrednosti funkcije pripadnosti, defazifikacija), dok neke ne prolaze kroz sve ove korake.
 \\
 \\
-U nastavku su predstavljene 2 metode za ulep\v savanje slika zasnovane na fazi logici: jedna za slike u boji, druga za crno-bele slike.
+U nastavku su predstavljene 2 metode za pobolj\v savanje kvaliteta slike zasnovane na fazi logici: jedna za slike u boji, druga za crno-bele slike.
 
 \newpage
-\subsection{Tehnika za ulep\v savanje crno-belih slika sa lo\v sim kontrastom [3]}
+\subsection{Tehnika za pobolj\v savanje kvaliteta crno-belih slika sa lo\v sim kontrastom [3]}
 
 Vrednosti ulazne slike $X$, dimenzija M x N, fazifikuju se primenom funkcije $\mu$:\\
 \begin{align*}
   \mu_{ij} = \mu(x_{ij}) =  \frac{x_{ij} - x_{min}}{x_{max} - x_{min}}\\ \\
-  0\leq i \leq M, 0\leq j \leq N
+  0\leq i < M, 0\leq j < N
 \end{align*}
 $x_{max}$, $x_{min}$ predstavljaju maksimalnu i minimalnu vrednost piksela koja se mo\v ze na\' ci na slici $X$, respektivno.\\
 $x_{ij}$ predstavlja vrednost piksela na mestu $ij$ slike $X$. Za 8-bitnu sliku, ta vrednost mo\v ze biti u intervalu $[0, 2^8 - 1]$. \\ 
 $\mu_{ij}$ predstavlja stepen osvetljenosti koju ima piksel $ij$ na ulaznoj slici $X$. U fazi terminologiji, $\mu$ je funkcija pripadnosti i omogu\' cava 
-prevodjenje nefazi ulaza (slika $X$) u njen odgovaraju\' ci fazi oblik.
+prevo\dj enje nefazi ulaza (slika $X$) u njen odgovaraju\' ci fazi oblik.
 Stoga, $0\leq \mu_{ij} \leq 1$.\\
 
 Kako bi se dobio \v sto bolji rezultat, za modifikaciju funkcije pripadnosti se uzima poznati INT operator, koji su predlo\v zili King i Pal 1981. godine [5].\\
 
-INT operator primenjen na vrednostima funkcije pripadnosti $\mu$: \\
+INT operator primenjen na vrednostima funkcije pripadnosti $\mu$:
 
-\[
+\begin{equation}\label{int_operator}
   \bar\mu_{ij}(\mu_{ij}) = 
     \begin{cases} 
-      2 * \mu_{ij}^2 & 0\leq \mu_{ij}\leq \mu_{c} \\
-      1 - (2 * (1 - \mu_{ij})^2) & \mu_{c}\leq \mu_{ij}\leq 1 
+      2 \cdot \mu_{ij}^2 & 0\leq \mu_{ij}\leq \mu_{c} \\
+      1 - (2 \cdot (1 - \mu_{ij})^2) & \mu_{c} < \mu_{ij}\leq 1 
     \end{cases}
- \]
+ \end{equation}
 
 Ta\v cka $\mu_{c}$ je grani\v cna vrednost koja se mo\v ze menjati. Naj\v ce\v s\' ce uzimana vrednost za nju je $0.5$ 
-(takodje kori\v s\' cenja i u na\v soj implementaciji). \\
+(tako\dj e kori\v s\' cenja i u na\v soj implementaciji). \\
 
 Formula kojom je predstavljen INT operator, u stvari, predstavlja matemati\v cku formulaciju
-naredna 3 if-then pravila: \\ \\
+naredna 3 if-then pravila [9]: \\ \\
 1. Ako je piksel svetao, onda \'ce biti svetliji.\\
 2. Ako je piksel siv, onda \'ce biti siv. \\
 3. Ako je piksel taman, onda \'ce biti tamniji.\\ \\
@@ -526,11 +526,14 @@ Nakon modifikacije funkcije pripadnosti, dobijene vrednosti treba defazifikovati
 Izlazna slika $Y$ se dobija primenom inverzne funkcije $\mu^{-1}$:\\
 \begin{align*}
   y_{ij} = \mu^{-1}(\bar\mu_{ij})\\
-  y_{ij} = x_{min} + \bar\mu * (x_{max} - x_{min})
+  y_{ij} = x_{min} + \bar\mu \cdot (x_{max} - x_{min})
 \end{align*}
+
+U nastavku je kod koji implementira gore navedeni algoritam.
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_grayscale.cpp}
 
+\newpage
 Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref{fuzzy_grayscale_output2} su prikazani rezultati rada algoritma.
 
 \begin{multicols}{2}
@@ -548,8 +551,6 @@ Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref
   \caption{Rezultat}\label{tree_fuzzy_grayscale_output}
 \end{figure}
 \end{multicols}
-
-\newpage
 
 \begin{multicols}{2}
 % first column
@@ -584,47 +585,49 @@ Na Slici \ref{tree_fuzzy_grayscale_output}, \ref{fuzzy_grayscale_output1} i \ref
 \end{multicols}
 
 \newpage
-\subsection{Tehnika za ulep\v savanje slika u boji sa lo\v sim kontrastom [4]}
+\subsection{Tehnika za pobolj\v savanje kvaliteta slika u boji sa lo\v sim kontrastom [4]}
 
 RGB model boja je aditivni model boja koji opisuje boju dodavanjem odgovaraju\' ceg stepena crvene, zelene i plave boje. Taj stepen, za 8-bitnu sliku, mo\v ze imati vrednosti u intervalu $[0, 2^8 - 1]$. 
 Metod opisan u nastavku pobolj\v sava kontrast slike opisane u RGB modelu boja. \\ \\
 Fazifikacija, izmena vrednosti funkcije pripadnosti i defazifikacija se rade posebno na svakom kanalu u\v citane slike $X$, dimenzija M x N.
 
 \begin{align*}
-  \mu_{ij} = [1 + \frac{x_{max} - x_{ij}}{Fd}]^{-Fe} \\ \\
-  0\leq i \leq M, 0\leq j \leq N
+  \mu_{ij} = \Bigg( 1 + \frac{x_{max} - x_{ij}}{Fd}\Bigg)^{-Fe} \\ \\
+  0\leq i < M, 0\leq j < N
 \end{align*}
 
 Kako se formula posebno primenjuje nad svakim kanalom slike $X$, $x_{max}$ predstavlja maksimalnu vrednost trenutno tretiranog kanala piksela koja se mo\v ze na\' ci na slici $X$.\\
 $x_{ij}$ predstavlja vrednost piksela na poziciji $ij$. \\ 
 $\mu_{ij}$ je vrednost funkcije pripadnosti $x_{ij}$, $0\leq \mu_{ij} \leq 1$.\\
-$Fe$ je eksponencijalna fazi konstanta (eng. exponential fuzzifier), koja . \\
-Eksperimentalno je pokazano da su dobro izabrane vrednosti za Fe 1 i 2 []. \\
+$Fe$ je eksponencijalna fazi konstanta (eng. exponential fuzzifier), koja uzima pozitivne vrednosti. \\
+Eksperimentalno je pokazano da su dobro izabrane vrednosti za Fe 1 i 2. \\
 U na\v soj implementaciji 
 \begin{align*}
   Fe = 2\\
 \end{align*}
-$Fd$ je koli\v cni\v cka fazi konstanta (eng. denominational fuzzifier), koja . \\
+$Fd$ je koli\v cni\v cka fazi konstanta (eng. denominational fuzzifier), koja uzima pozitivne vrednosti. \\
 \begin{align*}
   Fd = \frac{x_{max} - x_{mid}}{0.5^{\frac{-1}{Fe}} - 1}
 \end{align*}
 \\
 $x_{mid}$ je srednja vrednost trenutno tretiranog kanala piksela koja se mo\v ze na\' ci na slici $X$. \\ \\
-Nakon fazifikacije se vr\v si modifikacija funkcije pripadnosti za svaki kanal svakog piksela kori\v \' cenjem $INT$ operatora definisanog u formuli (\ref{int_operator}).\\
+Nakon fazifikacije se vr\v si modifikacija funkcije pripadnosti za svaki kanal svakog piksela kori\v s\' cenjem $INT$ operatora definisanog u formuli (\ref{int_operator}).\\
 \\
 Defazifikacija se vr\v si kori\v s\' cenjem:\\
 \begin{align*}
   y_{ij} = \mu^{-1}(\bar\mu_{ij})\\
-  y_{ij} = x_{max} - Fd * (\bar\mu_{ij}^{-Fe}) + Fd\\
+  y_{ij} = x_{max} - Fd \cdot (\bar\mu_{ij})^{-Fe} + Fd\\
 \end{align*}
 
 $\bar\mu_{ij}$ je rezultat primene INT operatora n\mbox a $\mu_{ij}$. \\
 $y_{ij}$ trenutno tretirani kanal piksela koji \' ce \v ciniti izlaznu sliku $Y$.\\
 \\
-Kombinovanjem novodobijenih vrednosti crvene, zelene i plave boje svakog piksela ulazne slike $X$, dobija se izlazna slika $Y$.
+Kombinovanjem novodobijenih vrednosti crvene, zelene i plave boje svakog piksela ulazne slike $X$, dobija se izlazna slika $Y$. \\ \\
+U nastavku je prikazan kod kao reprezentacija prikazanog algoritma. \\
 
 \inputminted[tabsize=2,breaklines]{cpp}{codes/latex/fuzzy_color_latex.cpp}
 
+\newpage
 Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani rezultati rada algoritma.
 
 \begin{multicols}{2}
@@ -677,9 +680,9 @@ Na Slici \ref{river_output}, \ref{woman_output} i \ref{cat_output} su prikazani 
 \end{multicols}
 
 \newpage
-\subsection{Poredjenje rezultata metoda za ulep\v savanje slika u boji, crno-belih slika i metoda pode\v savanja histograma}
+\subsection{Pore\dj enje rezultata metoda za pobolj\v savanje kvaliteta slika u boji, crno-belih slika i metoda pode\v savanja histograma}
 Metoda pode\v savanja histograma (eng. histogram equalization - HE) je jedna od najpopularnijih metoda za obradu slika. 
-Zbog toga \v sto su njeni rezultati dobri, uporedjeni su sa rezultatima predstavljenih fazi metoda. \\  
+Zbog toga \v sto su njeni rezultati dobri, upore\dj eni su sa rezultatima predstavljenih fazi metoda. \\  
 
 \begin{multicols}{2}
 % first column
@@ -786,18 +789,16 @@ Sude\' ci po tome koliko uspe\v sno je pobolj\v san kontrast, definitivno su pob
 \end{multicols}
 
 Kada je kontrast mera kvaliteta, fazi metode uspevaju da proizvedu ubedljivo bolje rezultate. \\
-Vidno najbolje rezultate daje metoda za ulep\v savanje slika u boji. 
-
-
+Vidno najbolje rezultate daje metoda za pobolj\v savanje kvaliteta slika u boji. 
 
 \newpage
 \section{Zaklju\v cak}
 Teorija fazi skupova i fazi logika imaju zna\v cajnu primenu u procesiranju slika. Neke od tih primena videli smo i u ovom radu - binarizacija slike, detektovanje ivica, pode\v savanje kontrasta i osvetljenosti. \\ \\
 Opisana su dva algoritma, Fuzzy C-means (FCM) za binarizaciju slike i Fuzzy Edge Detection (FED) za detekciju ivica. Ovi algoritmi su pore\dj eni sa algoritmima koji ne koriste fazi logiku. Konkretno, poredili smo FCM sa k-means-om i FED sa Canny Edge Detection (CED) algoritmom. Slike dobijene FCM-om i k-means-om se skoro i ne razlikuju, dok to nije slu\v caj sa FED-om i CED-om, \v ciji su izlazi primetno druga\v ciji. U oba slu\v caja su algoritmi koji koriste fazi logiku bila br\v za.
 \\
-Takodje, opisana su i dva metoda za ulep\v savanje slika (slika u boji i crno-belih) koji su, u poredjenju sa tradicionalnim tehnikama zasnovanim na histogramu slike, dali mnogo bolje rezultate. \\ 
+Tako\dj e, opisana su i dva metoda za pobolj\v savanje kvaliteta slika (slika u boji i crno-belih) koji su, u pore\dj enju sa tradicionalnim tehnikama zasnovanim na histogramu slike, dali mnogo bolje rezultate, na u\v strb prostorne i vremenske slo\v zenosti. \\ 
 \\
-Glavna prednost fazi pristupa jeste jednostavnost njihove implementacije i sposobnost da opi\v su neodredjenosti (eng. vagueness) na slikama. \\ Pored prednosti, ovi pristupi imaju i mane. Nekad to mo\v ze biti brzina izvr\v savanja, ili pak memorija. Tako\dj e, i sami rezultati se mogu dosta razlikovati od rezultata algoritama koji nisu bazirani na fazi logici, kao \v sto je to bio slu\v caj kod detekciji ivica i fazi metode za ulep\v savanje crno-belih slika.
+Glavna prednost fazi pristupa jeste jednostavnost njihove implementacije i sposobnost da opi\v su neodre\dj enosti (eng. vagueness) na slikama. \\ Pored prednosti, ovi pristupi imaju i mane. Nekad to mo\v ze biti brzina izvr\v savanja, ili pak memorija. Tako\dj e, i sami rezultati se mogu dosta razlikovati od rezultata algoritama koji nisu bazirani na fazi logici, kao \v sto je to bio slu\v caj kod detekciji ivica i fazi metode za pobolj\v savanje kvaliteta crno-belih slika.
 
 \newpage
 
@@ -809,5 +810,7 @@ Glavna prednost fazi pristupa jeste jednostavnost njihove implementacije i sposo
   \bibitem{} Sankar K. Pal, Robert A. King, “Image Enhancement using Smoothing with Fuzzy Sets”, IEEE Transactions on Systems, Man and Cybernetics, July 1981.
   \bibitem{} S. N. Sivanandam, S. Sumathi, S. N. Deepa, “Introduction to Fuzzy Logic using MATLAB Springer”, Verlag Berlin Heidelberg 2007.
   \bibitem{} Hamid R. Tizhoosh, "Fuzzy Image Enhancement: An Overview", University of Magdeburg, Department for Technical Computer Science
+  \bibitem{} Shital B.Nikam, Dnyaneshwar D. Ahire, "A Survey on Fuzzy Based Techniques For Contrast Enhancement", International Research Journal of Engineering and Technology, November 2016
+  \bibitem{} Tarun Mahashwari, Amit Asthana, "Image Enhancement Using Fuzzy Technique", International Journal of Research Review in Engineering Science and Technology, June 2013
 \end{thebibliography}
 \end{document}

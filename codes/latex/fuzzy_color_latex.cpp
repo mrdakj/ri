@@ -1,3 +1,4 @@
+// output image dimensions are the same as the input image dimensions
 img::Image<img::Type::RGB> output(rows(), cols());
 
 unsigned max_R, min_R;
